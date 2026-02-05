@@ -1,25 +1,39 @@
 import React, { useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Button } from '../ui/Button';
+import { Button } from '../ui/button';
 
 interface WaitlistFormProps {
   onSuccess: () => void;
 }
 
 const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSuccess }) => {
-  const [contact, setContact] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
+    setErrorMessage(null);
 
     const { error } = await supabase
-      .from('waitlist') // Ensure this table exists in your Supabase DB
-      .insert([{ contact_info: contact, source: 'landing_page_nav' }]);
+      .from('waitlist_form')
+      .insert([
+        { 
+          email_address: email, 
+          phone_number: phone,
+          status: 'pending' 
+        }
+      ]);
 
     if (error) {
-      alert("Error joining waitlist. Please try again.");
+      // Check for Postgres unique violation code '23505'
+      if (error.code === '23505') {
+        setErrorMessage("You're already on the waitlist! ✨");
+      } else {
+        setErrorMessage("Something went wrong. Please try again.");
+      }
       setStatus('idle');
     } else {
       setStatus('success');
@@ -30,20 +44,52 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSuccess }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {status === 'success' ? (
-        <div className="p-4 bg-green-50 text-green-700 rounded-xl text-center font-medium">
+        <div className="p-4 bg-green-50 text-green-700 rounded-xl text-center font-medium animate-in fade-in zoom-in duration-300">
           You're on the list! ✨
         </div>
       ) : (
         <>
-          <input
-            required
-            type="text"
-            placeholder="WhatsApp or Email"
-            className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-black outline-none transition-all"
-            value={contact}
-            onChange={(e) => setContact(e.target.value)}
-          />
-          <Button variant="accent" className="w-full" type="submit" disabled={status === 'loading'}>
+          <div className="space-y-3">
+            <input
+              required
+              type="email"
+              placeholder="Email address"
+              className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-[#1D4ED8] outline-none transition-all shadow-sm"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (errorMessage) setErrorMessage(null);
+              }}
+            />
+            <input
+              required
+              type="tel"
+              placeholder="WhatsApp number"
+              className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-[#1D4ED8] outline-none transition-all shadow-sm"
+              value={phone}
+              onChange={(e) => {
+                setPhone(e.target.value);
+                if (errorMessage) setErrorMessage(null);
+              }}
+            />
+          </div>
+
+          {/* Inline Prompt for Existing Users */}
+          {errorMessage && (
+            <div className="px-1 animate-in slide-in-from-top-2 duration-300">
+              <p className="text-sm font-bold text-[#E67E22] flex items-center gap-2">
+                <span className="flex h-2 w-2 rounded-full bg-[#E67E22]"></span>
+                {errorMessage}
+              </p>
+            </div>
+          )}
+
+          <Button 
+            variant="accent" 
+            type="submit" 
+            disabled={status === 'loading'}
+            className="w-full !bg-[#1D4ED8] hover:opacity-90 transition-all active:scale-95"
+          >
             {status === 'loading' ? 'Joining...' : 'Get Early Access'}
           </Button>
         </>

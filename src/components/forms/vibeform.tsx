@@ -1,7 +1,7 @@
 import React from 'react';
-import { useVibe } from '../../context/VibeContext';
-import { Button } from '../ui/Button';
-import { IbadanLocation } from '../../types';
+import { useVibe } from '../../context/vibecontext';
+import { Button } from '../ui/button';
+import type { IbadanLocation } from '../../types';
 
 const locations: IbadanLocation[] = ['Bodija', 'Akala Express', 'Jericho', 'Oluyole', 'Iyaganku', 'Samonda'];
 

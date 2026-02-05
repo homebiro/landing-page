@@ -1,5 +1,7 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { VibeData } from '../types';
+import { createContext, useContext, useState, type ReactNode } from 'react';
+
+// 3. Added "type" keyword to VibeData to satisfy verbatimModuleSyntax.
+import type { VibeData } from '../types';
 
 interface VibeContextType {
   vibeData: VibeData;

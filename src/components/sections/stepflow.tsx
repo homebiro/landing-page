@@ -1,5 +1,5 @@
 import React from 'react';
-import { useVibe } from '../../context/VibeContext';
+import { useVibe } from '../../context/vibecontext';
 import VibeForm from '../forms/VibeForm';
 import ContactForm from '../forms/ContactForm';
 

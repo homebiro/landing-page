@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useVibe } from '../../context/VibeContext';
+import { useVibe } from '../../context/vibecontext';
 import { supabase } from '../../lib/supabase';
-import { Button } from '../ui/Button';
+import { Button } from '../ui/button';
 
 const ContactForm: React.FC = () => {
   const { vibeData, updateVibe, nextStep } = useVibe();

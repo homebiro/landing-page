@@ -1,15 +1,15 @@
 import React from 'react';
-import { VibeProvider } from './context/VibeContext';
-import Navbar from './components/layout/Navbar';
-import Hero from './components/sections/Hero';
-import AboutUs from './components/sections/AboutUs';
-import Comparison from './components/sections/Comparison';
-import FeaturesGrid from './components/sections/FeaturesGrid';
-import StepFlow from './components/sections/StepFlow';
-import ContactSection from './components/sections/ContactSection';
-import Testimonials from './components/sections/Testimonials';
-import Footer from './components/layout/Footer';
-import CookieBanner from './components/layout/CookieBanner';
+import { VibeProvider } from './context/vibecontext';
+import Navbar from './components/layout/navbar';
+import Hero from './components/sections/hero';
+import AboutUs from './components/sections/aboutus';
+import Comparison from './components/sections/comparison';
+import FeaturesGrid from './components/sections/featuresgrid';
+import StepFlow from './components/sections/stepflow';
+import ContactSection from './components/sections/contactsection';
+import Testimonials from './components/sections/testimonials';
+import Footer from './components/layout/footer';
+import CookieBanner from './components/layout/cookiebanner';
 
 const App: React.FC = () => {
   return (

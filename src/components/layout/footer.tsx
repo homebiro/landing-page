@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from '../ui/Button';
+import { Button } from '../ui/button';
 
-const Footer: React.FC = () => {
+const Footer: React.FC = () => {  
   return (
     <footer className="bg-zinc-50 border-t border-zinc-200 pt-20 pb-10 px-6">
       <div className="max-w-7xl mx-auto">
