@@ -10,6 +10,7 @@ import ContactSection from './components/sections/contactsection';
 import Testimonials from './components/sections/testimonials';
 import Footer from './components/layout/footer';
 import CookieBanner from './components/layout/cookiebanner';
+import ScrollToTop from './components/scrolltotop';
 
 const App: React.FC = () => {
   return (
@@ -24,8 +25,11 @@ const App: React.FC = () => {
           <StepFlow />
           <Testimonials />
           <ContactSection />
+          <ScrollToTop />
         </main>
+        
         <Footer />
+        
         <CookieBanner />
       </div>
     </VibeProvider>

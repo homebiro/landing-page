@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import WaitlistModal from '../ui/waitlistmodal'; 
 import logo from '../../assets/logo.png'; 
@@ -6,6 +6,7 @@ import logo from '../../assets/logo.png';
 const Navbar: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
 
   const navLinks = [
     { name: 'About Us', href: '#about' },
@@ -14,9 +15,74 @@ const Navbar: React.FC = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
-  // Branding Colors from Logo:
-  // Royal Blue: #1D4ED8 (approx)
-  // Orange: #E67E22 (approx)
+  useEffect(() => {
+    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        // Only set active and update URL if we have scrolled past the header
+        if (entry.isIntersecting && window.scrollY > 50) {
+          const id = entry.target.id;
+          setActiveSection(id);
+          window.history.pushState(null, '', `#${id}`);
+        } 
+        // Explicitly clear URL if we are at the top, even if an entry triggers
+        else if (window.scrollY <= 50) {
+          setActiveSection('');
+          if (window.location.hash) {
+            window.history.pushState(null, '', window.location.pathname);
+          }
+        }
+      });
+    };
+
+    const observerOptions = {
+      rootMargin: '-100px 0px -60% 0px', 
+      threshold: 0.1, 
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    navLinks.forEach((link) => {
+      const sectionId = link.href.replace('#', '');
+      const element = document.getElementById(sectionId);
+      if (element) observer.observe(element);
+    });
+
+    const handleScroll = () => {
+      // Secondary check: if the user scrolls to the absolute top, wipe the hash
+      if (window.scrollY < 10) {
+        setActiveSection('');
+        if (window.location.hash) {
+          window.history.pushState(null, '', window.location.pathname);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    const sectionId = id.replace('#', '');
+    const element = document.getElementById(sectionId);
+    
+    if (element) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      window.history.pushState(null, '', id);
+    }
+  };
 
   return (
     <>
@@ -32,15 +98,27 @@ const Navbar: React.FC = () => {
             </a>
             
             <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-zinc-500">
-              {navLinks.map((link) => (
-                <a 
-                  key={link.name}
-                  href={link.href} 
-                  className="relative py-2 hover:text-[#1D4ED8] transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  {link.name}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.replace('#', '');
+                return (
+                  <a 
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(link.href);
+                    }}
+                    className={`relative py-2 transition-all duration-300 transform hover:-translate-y-1 ${
+                      isActive ? 'text-[#1D4ED8]' : 'hover:text-[#1D4ED8]'
+                    }`}
+                  >
+                    {link.name}
+                    <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#1D4ED8] transition-transform duration-300 origin-left ${
+                      isActive ? 'scale-x-100' : 'scale-x-0'
+                    }`} />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -52,15 +130,13 @@ const Navbar: React.FC = () => {
               >
                 Download App
               </button>
-              {/* Using the Orange from the icon for the "Soon" badge  when live integrate live */}
               <span className="absolute -top-2 -right-2 bg-[#E67E22] text-[7px] text-white px-1.5 py-0.5 rounded-full font-black uppercase tracking-widest shadow-lg">Soon</span> 
             </div>
             
-            {/* START HUNTING BUTTON: Matches the Royal Blue text in logo */}
             <Button 
               variant="primary" 
               className="hidden md:block !py-2.5 !px-6 text-sm !bg-[#1D4ED8] !text-white hover:!bg-[#153ca3] hover:scale-105 transition-all shadow-lg shadow-blue-200 active:scale-95"
-              onClick={() => document.getElementById('vibe-check')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => scrollToSection('#vibe-check')}
             >
               START HUNTING
             </Button>
@@ -83,24 +159,32 @@ const Navbar: React.FC = () => {
         {/* Mobile Menu */}
         <div className={`lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-zinc-100 overflow-hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
           <div className="px-6 py-8 flex flex-col gap-6">
-            {navLinks.map((link, i) => (
-              <a 
-                key={link.name}
-                href={link.href} 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-lg font-bold text-zinc-700 hover:text-[#1D4ED8] transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-4'}`}
-                style={{ transitionDelay: `${i * 50}ms` }}
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link, i) => {
+              const isActive = activeSection === link.href.replace('#', '');
+              return (
+                <a 
+                  key={link.name}
+                  href={link.href} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMobileMenuOpen(false);
+                    scrollToSection(link.href);
+                  }}
+                  className={`text-lg font-bold transition-transform duration-300 ${
+                    isActive ? 'text-[#1D4ED8] translate-x-2' : 'text-zinc-700 hover:text-[#1D4ED8]'
+                  } ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-4'}`}
+                  style={{ transitionDelay: `${i * 50}ms` }}
+                >
+                  {link.name}
+                </a>
+              );
+            })}
             <div className="pt-6 border-t border-zinc-100 flex flex-col gap-4">
                <button 
                 onClick={() => { setIsModalOpen(true); setIsMobileMenuOpen(false); }}
                 className="flex items-center justify-between w-full p-4 rounded-xl bg-blue-50 text-[#1D4ED8] font-bold"
               >
                 Download App
-                {/* Orange badge for consistency */}
                 <span className="text-[9px] bg-[#E67E22] text-white px-2 py-0.5 rounded-full uppercase">Coming Soon</span>
               </button>
               
@@ -108,7 +192,7 @@ const Navbar: React.FC = () => {
                 variant="primary" 
                 className="w-full py-4 !bg-[#1D4ED8] !text-white shadow-lg shadow-blue-100 active:scale-95"
                 onClick={() => {
-                  document.getElementById('vibe-check')?.scrollIntoView({ behavior: 'smooth' });
+                  scrollToSection('#vibe-check');
                   setIsMobileMenuOpen(false);
                 }}
               >

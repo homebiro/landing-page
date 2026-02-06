@@ -27,7 +27,7 @@ const VibeForm: React.FC = () => {
       </div>
 
       <div className="space-y-4">
-        <label className="block font-bold text-zinc-700">Monthly Budget (₦)</label>
+        <label className="block font-bold text-zinc-700">Budget (₦)</label>
         <input 
           type="text" 
           placeholder="e.g. 150k - 250k"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRealtimeLeads } from '../../hooks/useRealtimeLeads';
+import { useRealtimeLeads } from '../../hooks/userealtimeleads';
 
 const LiveTicker: React.FC = () => {
   const lead = useRealtimeLeads();
