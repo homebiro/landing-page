@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion, type Variants } from "framer-motion"; // Type-safe import
-import { CheckCircle2, XCircle } from "lucide-react"; // Optional: adding icons for professionalism
+import { motion, type Variants } from "framer-motion";
+import { CheckCircle2, XCircle, ShieldCheck } from "lucide-react";
 
 const Comparison: React.FC = () => {
   const points = [
@@ -26,103 +26,131 @@ const Comparison: React.FC = () => {
     }
   ];
 
-  // Animation Variants
   const containerVariants: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
         duration: 0.8,
-        ease: "easeOut"
+        ease: [0.22, 1, 0.36, 1]
       }
     }
   };
 
-  const rowVariants: Variants = {
-    hidden: { opacity: 0, x: -10 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
   return (
-    <section id="protection" className="py-24 px-6 bg-zinc-50 overflow-hidden">
+    <section id="protection" className="py-20 md:py-32 px-4 md:px-6 bg-[#FAFAFA] overflow-hidden">
       <motion.div 
-        className="max-w-5xl mx-auto"
+        className="max-w-6xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={containerVariants}
       >
-        <div className="text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-zinc-900"
+        <div className="text-center mb-16 md:mb-24">
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-6"
           >
-            The Protection Layer
+            <ShieldCheck size={14} className="text-[#1D4ED8]" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#1D4ED8]">Security Layer</span>
+          </motion.div>
+          
+          <motion.h2 className="text-4xl md:text-6xl font-black tracking-tight mb-6 text-zinc-900">
+            Professional <span className="text-zinc-400 italic font-medium">vs.</span> Chaotic
           </motion.h2>
-          <p className="text-zinc-500 font-medium text-lg">
-            Why smart tenants in Ibadan are switching to <span className="text-[#1D4ED8] font-bold">Homebiro</span>.
+          <p className="text-zinc-500 font-medium text-lg max-w-2xl mx-auto">
+            We’ve eliminated the friction of the Ibadan rental market to provide a premium, protected experience.
           </p>
         </div>
 
-        <div className="bg-white rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-zinc-200 shadow-2xl shadow-zinc-200/50">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-zinc-50 border-b border-zinc-100">
-                <th className="p-6 md:p-10 text-[10px] md:text-xs uppercase tracking-[0.2em] font-black text-zinc-400">Feature</th>
-                <th className="p-6 md:p-10 text-xl font-black text-red-500/80 italic">Traditional</th>
-                <th className="p-6 md:p-10 text-xl font-black text-[#1D4ED8] bg-blue-50/30">
-                  <span className="flex items-center gap-2">
-                    Homebiro <span className="text-[10px] bg-[#E67E22] text-white px-2 py-0.5 rounded-full uppercase tracking-tighter hidden md:inline">Shield</span>
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-100">
-              {points.map((point, i) => (
-                <motion.tr 
-                  key={i} 
-                  variants={rowVariants}
-                  className="group hover:bg-zinc-50 transition-colors"
-                >
-                  <td className="p-6 md:p-10">
-                    <span className="block font-black text-zinc-900 text-sm md:text-base">{point.label}</span>
-                  </td>
-                  <td className="p-6 md:p-10">
-                    <div className="flex items-start gap-3">
-                      <span className="mt-1 text-red-300 group-hover:text-red-500 transition-colors hidden md:block">
-                         <XCircle size={18} />
-                      </span>
-                      <span className="text-zinc-500 text-sm md:text-base leading-relaxed">{point.traditional}</span>
+        {/* Premium Comparison Wrapper */}
+        <div className="relative">
+          {/* Header Labels (Desktop Only) */}
+          <div className="hidden md:grid grid-cols-12 gap-4 mb-8 px-10">
+            <div className="col-span-4 text-xs font-black uppercase tracking-widest text-zinc-400">Standard Feature</div>
+            <div className="col-span-4 text-xs font-black uppercase tracking-widest text-red-400">Traditional Market</div>
+            <div className="col-span-4 text-xs font-black uppercase tracking-widest text-[#1D4ED8]">Homebiro Premium</div>
+          </div>
+
+          <div className="space-y-4 md:space-y-3">
+            {points.map((point, i) => (
+              <motion.div 
+                key={i} 
+                variants={itemVariants}
+                className="group relative bg-white md:bg-transparent border md:border-none border-zinc-200 rounded-3xl md:rounded-none overflow-hidden"
+              >
+                {/* Desktop Layout */}
+                <div className="hidden md:grid grid-cols-12 gap-4 items-center bg-white border border-zinc-100 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl hover:shadow-zinc-200/50 hover:border-blue-100 hover:-translate-y-1">
+                  <div className="col-span-4">
+                    <span className="text-lg font-black text-zinc-900">{point.label}</span>
+                  </div>
+                  <div className="col-span-4 flex items-start gap-3 opacity-60 group-hover:opacity-100 transition-opacity">
+                    <XCircle size={20} className="text-red-400 mt-1 shrink-0" />
+                    <span className="text-zinc-500 font-medium">{point.traditional}</span>
+                  </div>
+                  <div className="col-span-4 flex items-start gap-3 bg-blue-50/50 p-6 rounded-2xl border border-blue-50">
+                    <CheckCircle2 size={20} className="text-[#1D4ED8] mt-1 shrink-0" />
+                    <span className="text-zinc-900 font-bold leading-tight">{point.homebiro}</span>
+                  </div>
+                </div>
+
+                {/* Mobile Layout */}
+                <div className="md:hidden p-6 space-y-6">
+                  <div className="flex justify-between items-center border-b border-zinc-50 pb-4">
+                    <span className="text-sm font-black text-zinc-900 uppercase tracking-tight">{point.label}</span>
+                    <div className="h-1 w-12 bg-blue-100 rounded-full" />
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="flex gap-4">
+                      <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center shrink-0">
+                        <XCircle size={16} className="text-red-400" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black text-red-300 uppercase mb-1">Traditional</p>
+                        <p className="text-zinc-500 text-sm font-medium">{point.traditional}</p>
+                      </div>
                     </div>
-                  </td>
-                  <td className="p-6 md:p-10 bg-blue-50/10 group-hover:bg-transparent transition-colors">
-                    <div className="flex items-start gap-3">
-                      <span className="mt-1 text-[#1D4ED8] hidden md:block">
-                        <CheckCircle2 size={18} />
-                      </span>
-                      <span className="font-bold text-zinc-900 text-sm md:text-base leading-relaxed">
-                        {point.homebiro}
-                      </span>
+
+                    <div className="flex gap-4 bg-blue-50/50 p-4 rounded-2xl border border-blue-100/50">
+                      <div className="w-8 h-8 rounded-full bg-[#1D4ED8] flex items-center justify-center shrink-0 shadow-lg shadow-blue-200">
+                        <CheckCircle2 size={16} className="text-white" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black text-[#1D4ED8] uppercase mb-1">Homebiro</p>
+                        <p className="text-zinc-900 text-sm font-bold">{point.homebiro}</p>
+                      </div>
                     </div>
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
         
-        {/* Footer Guarantee text */}
-        <motion.p 
+        <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="text-center mt-10 text-zinc-400 text-sm font-bold uppercase tracking-widest"
+          className="mt-16 text-center space-y-4"
         >
-          † 100% Risk-Free Professional Search
-        </motion.p>
+          <p className="text-zinc-400 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em]">
+            † 100% Risk-Free Professional Search Guarantee
+          </p>
+          <div className="flex justify-center gap-8 opacity-30 grayscale contrast-125">
+            {/* These can be small logos or text placeholders for NDPA/Legal partners */}
+            <span className="text-[10px] font-black uppercase">Verified Vetting</span>
+            <span className="text-[10px] font-black uppercase">NDPA Compliant</span>
+            <span className="text-[10px] font-black uppercase">Secure Escrow</span>
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   );
