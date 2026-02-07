@@ -18,13 +18,11 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleIntersect = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
-        // Only set active and update URL if we have scrolled past the header
         if (entry.isIntersecting && window.scrollY > 50) {
           const id = entry.target.id;
           setActiveSection(id);
           window.history.pushState(null, '', `#${id}`);
         } 
-        // Explicitly clear URL if we are at the top, even if an entry triggers
         else if (window.scrollY <= 50) {
           setActiveSection('');
           if (window.location.hash) {
@@ -48,7 +46,6 @@ const Navbar: React.FC = () => {
     });
 
     const handleScroll = () => {
-      // Secondary check: if the user scrolls to the absolute top, wipe the hash
       if (window.scrollY < 10) {
         setActiveSection('');
         if (window.location.hash) {
@@ -88,7 +85,9 @@ const Navbar: React.FC = () => {
     <>
       <nav className="fixed top-0 w-full bg-zinc-50/90 backdrop-blur-xl z-[90] border-b border-zinc-200 transition-all duration-300 hover:bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-10">
+          
+          {/* Logo Area - Set to flex-shrink-0 to maintain size */}
+          <div className="flex-shrink-0">
             <a href="/" className="flex items-center">
               <img 
                 src={logo} 
@@ -96,33 +95,35 @@ const Navbar: React.FC = () => {
                 className="h-16 w-auto object-contain transition-transform hover:scale-105 active:scale-95" 
               />
             </a>
-            
-            <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-zinc-500">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.href.replace('#', '');
-                return (
-                  <a 
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(link.href);
-                    }}
-                    className={`relative py-2 transition-all duration-300 transform hover:-translate-y-1 ${
-                      isActive ? 'text-[#1D4ED8]' : 'hover:text-[#1D4ED8]'
-                    }`}
-                  >
-                    {link.name}
-                    <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#1D4ED8] transition-transform duration-300 origin-left ${
-                      isActive ? 'scale-x-100' : 'scale-x-0'
-                    }`} />
-                  </a>
-                );
-              })}
-            </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* CENTRALIZED NAV LINKS - Added flex-1 and justify-center */}
+          <div className="hidden lg:flex flex-1 justify-center items-center gap-8 text-sm font-semibold text-zinc-500">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.replace('#', '');
+              return (
+                <a 
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(link.href);
+                  }}
+                  className={`relative py-2 transition-all duration-300 transform hover:-translate-y-1 ${
+                    isActive ? 'text-[#1D4ED8]' : 'hover:text-[#1D4ED8]'
+                  }`}
+                >
+                  {link.name}
+                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#1D4ED8] transition-transform duration-300 origin-left ${
+                    isActive ? 'scale-x-100' : 'scale-x-0'
+                  }`} />
+                </a>
+              );
+            })}
+          </div>
+
+          {/* Right Action Buttons - Set to flex-shrink-0 to maintain size */}
+          <div className="flex items-center gap-4 flex-shrink-0">
             <div className="relative group hidden sm:block">
               <button 
                 onClick={() => setIsModalOpen(true)}

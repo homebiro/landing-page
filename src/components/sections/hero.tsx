@@ -80,15 +80,18 @@ const Hero: React.FC = () => {
             <Button 
               variant="primary" 
               onClick={scrollToVibeCheck} 
-              className="text-lg px-10 !bg-[#1D4ED8] hover:!bg-[#153ca3] transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg shadow-blue-200"
+              // Reduced px-10 to px-8, text-lg to text-base, and py-6 (implicit via button component)
+              className="text-base px-8 py-6 !bg-[#1D4ED8] hover:!bg-[#153ca3] transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-blue-200"
             >
               START HUNTING TODAY
             </Button>
             
-            <button className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-lg hover:bg-[#1D4ED8]/5 text-zinc-800 transition-all duration-300 hover:pl-10">
+            {/* Reduced text-lg to text-base and px-8 to px-6 */}
+            <button className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full font-bold text-base hover:bg-[#1D4ED8]/5 text-zinc-800 transition-all duration-300">
               <span className="group-hover:text-[#1D4ED8] transition-colors">Watch how it works</span>
-              <div className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E67E22] transition-all duration-300 shadow-sm">
-                <svg className="w-4 h-4 text-black group-hover:text-white fill-current transition-colors" viewBox="0 0 24 24">
+              {/* Reduced w-10/h-10 to w-8/h-8 */}
+              <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E67E22] transition-all duration-300 shadow-sm">
+                <svg className="w-3 h-3 text-black group-hover:text-white fill-current transition-colors" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
@@ -122,7 +125,7 @@ const Hero: React.FC = () => {
               <div className="flex items-center gap-4">
                 <div className="text-3xl text-green-500 font-bold">✓</div>
                 <div>
-                  <p className="font-bold text-sm">Tenant Concierge Active</p>
+                  <p className="font-bold text-sm text-zinc-900">Tenant Concierge Active</p>
                   <p className="text-xs text-zinc-500">Protecting renters in Ibadan since 2024</p>
                 </div>
               </div>
