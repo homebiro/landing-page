@@ -43,19 +43,7 @@ const Hero: React.FC = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           
-          {/* Animated Badge */}
-          <motion.div 
-            variants={itemVariants}
-            className="inline-flex items-center gap-2 bg-orange-50 px-4 py-2 rounded-full border border-orange-100 transition-all duration-500 hover:scale-105"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E67E22] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E67E22]"></span>
-            </span>
-            <span className="text-xs font-bold tracking-widest uppercase text-[#E67E22]">
-              30-Days 100% Satisfaction Guarantee
-            </span>
-          </motion.div>
+          {/* Animated Badge Removed */}
 
           <motion.h1 
             variants={itemVariants} 
@@ -80,16 +68,13 @@ const Hero: React.FC = () => {
             <Button 
               variant="primary" 
               onClick={scrollToVibeCheck} 
-              // Reduced px-10 to px-8, text-lg to text-base, and py-6 (implicit via button component)
               className="text-base px-8 py-6 !bg-[#1D4ED8] hover:!bg-[#153ca3] transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-blue-200"
             >
               START HUNTING TODAY
             </Button>
             
-            {/* Reduced text-lg to text-base and px-8 to px-6 */}
             <button className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full font-bold text-base hover:bg-[#1D4ED8]/5 text-zinc-800 transition-all duration-300">
               <span className="group-hover:text-[#1D4ED8] transition-colors">Watch how it works</span>
-              {/* Reduced w-10/h-10 to w-8/h-8 */}
               <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E67E22] transition-all duration-300 shadow-sm">
                 <svg className="w-3 h-3 text-black group-hover:text-white fill-current transition-colors" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />

@@ -10,8 +10,9 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'About Us', href: '#about' },
-    { name: 'Protection', href: '#protection' },
-    { name: 'How it Works', href: '#vibe-check' },
+    { name: 'Solutions', href: '#solutions' },
+    { name: 'Work with Homebiro', href: '#work-with-us' },
+    { name: 'Our Cities', href: '#cities' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -86,7 +87,7 @@ const Navbar: React.FC = () => {
       <nav className="fixed top-0 w-full bg-zinc-50/90 backdrop-blur-xl z-[90] border-b border-zinc-200 transition-all duration-300 hover:bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
           
-          {/* Logo Area - Set to flex-shrink-0 to maintain size */}
+          {/* Logo Area */}
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center">
               <img 
@@ -97,7 +98,7 @@ const Navbar: React.FC = () => {
             </a>
           </div>
 
-          {/* CENTRALIZED NAV LINKS - Added flex-1 and justify-center */}
+          {/* CENTRALIZED NAV LINKS */}
           <div className="hidden lg:flex flex-1 justify-center items-center gap-8 text-sm font-semibold text-zinc-500">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace('#', '');
@@ -122,7 +123,7 @@ const Navbar: React.FC = () => {
             })}
           </div>
 
-          {/* Right Action Buttons - Set to flex-shrink-0 to maintain size */}
+          {/* Right Action Buttons */}
           <div className="flex items-center gap-4 flex-shrink-0">
             <div className="relative group hidden sm:block">
               <button 

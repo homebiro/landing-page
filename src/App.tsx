@@ -2,7 +2,7 @@ import React from 'react';
 import { VibeProvider } from './context/vibecontext';
 import Navbar from './components/layout/navbar';
 import Hero from './components/sections/hero';
-import AboutUs from './components/sections/aboutus';
+import ConciergeService from './components/sections/conciergeservice'; // Updated import
 import Comparison from './components/sections/comparison';
 import FeaturesGrid from './components/sections/featuresgrid';
 import StepFlow from './components/sections/stepflow';
@@ -19,7 +19,8 @@ const App: React.FC = () => {
         <Navbar />
         <main>
           <Hero />
-          <AboutUs />
+          {/* Replaced AboutUs with ConciergeService */}
+          <ConciergeService /> 
           <Comparison />
           <FeaturesGrid />
           <StepFlow />
