@@ -9,32 +9,38 @@ import Protection from './components/sections/protection';
 import Footer from './components/layout/footer';
 import CookieBanner from './components/layout/cookiebanner';
 import ScrollToTop from './components/scrolltotop';
+import { VibeProvider } from './context/VibeContext'; // ✅ Added
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white font-sans text-black selection:bg-green-100">
-      <Navbar />
-      <main>
-        {/*   Hero Section */}
-        <Hero />
-        {/*   Concierge Service */}
-        <ConciergeService /> 
-        {/*   why choose us */}
-        <WhyChooseUs />
-        {/*   Neigbourhood Tour */}
-        <NeighbourhoodTour />
+    <VibeProvider> {/* ✅ Added wrapper */}
+      <div className="min-h-screen bg-white font-sans text-black selection:bg-green-100">
+        <Navbar />
+        <main>
+          {/*   Hero Section */}
+          <Hero />
 
-        {/* Concierge Experience */}
-        <ConciergExperience />
+          {/*   Concierge Service */}
+          <ConciergeService /> 
 
-        {/* Protection */}
-        <Protection />
+          {/*   why choose us */}
+          <WhyChooseUs />
 
-        <ScrollToTop />
-      </main>
-      <Footer />
-      <CookieBanner />
-    </div>
+          {/*   Neigbourhood Tour */}
+          <NeighbourhoodTour />
+
+          {/* Concierge Experience */}
+          <ConciergExperience />
+
+          {/* Protection */}
+          <Protection />
+
+          <ScrollToTop />
+        </main>
+        <Footer />
+        <CookieBanner />
+      </div>
+    </VibeProvider>
   );
 };
 
