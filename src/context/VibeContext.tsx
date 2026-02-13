@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 
-
 interface VibeContextType {
   cookiesAccepted: boolean;
   acceptCookies: () => void;
@@ -28,8 +27,6 @@ export const VibeProvider = ({ children }: { children: ReactNode }) => {
 
 export const useVibe = () => {
   const context = useContext(VibeContext);
-  if (!context) {
-    throw new Error("useVibe must be used within VibeProvider");
-  }
+  if (!context) throw new Error("useVibe must be used within VibeProvider");
   return context;
 };

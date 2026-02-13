@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useVibe } from '../../context/VibeContext';
 
 const CookieBanner: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const { cookiesAccepted, acceptCookies } = useVibe();
 
-  useEffect(() => {
-    const consent = localStorage.getItem('homebiro-cookies');
-    if (!consent) setIsVisible(true);
-  }, []);
-
-  const accept = () => {
-    localStorage.setItem('homebiro-cookies', 'true');
-    setIsVisible(false);
-  };
-
-  if (!isVisible) return null;
+  if (cookiesAccepted) return null;
 
   return (
     <div className="fixed bottom-6 right-6 left-6 md:left-auto md:w-96 z-[110] animate-in fade-in slide-in-from-bottom-10 duration-700">
@@ -23,7 +13,7 @@ const CookieBanner: React.FC = () => {
           <a href="#" className="text-white underline ml-1">Learn more</a>
         </p>
         <button 
-          onClick={accept}
+          onClick={acceptCookies} // ✅ Use context function
           className="w-full bg-white text-black py-3 rounded-xl font-bold text-sm hover:bg-zinc-200 transition-colors"
         >
           I UNDERSTAND

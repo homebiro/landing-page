@@ -9,7 +9,7 @@ import Protection from './components/sections/protection';
 import Footer from './components/layout/footer';
 import CookieBanner from './components/layout/cookiebanner';
 import ScrollToTop from './components/scrolltotop';
-import { VibeProvider } from './context/vibecontext';
+import { VibeProvider } from './context/VibeContext';
 
 
 
