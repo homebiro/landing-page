@@ -12,6 +12,7 @@ import ScrollToTop from './components/scrolltotop';
 import { VibeProvider } from './context/VibeContext';
 
 
+
 const App: React.FC = () => {
   return (
     <VibeProvider> {/* ✅ Added wrapper */}
