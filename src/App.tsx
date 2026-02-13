@@ -1,39 +1,40 @@
 import React from 'react';
-import { VibeProvider } from './context/vibecontext';
 import Navbar from './components/layout/navbar';
 import Hero from './components/sections/hero';
-import ConciergeService from './components/sections/conciergeservice'; // Updated import
-import Comparison from './components/sections/comparison';
-import FeaturesGrid from './components/sections/featuresgrid';
-import StepFlow from './components/sections/stepflow';
-import ContactSection from './components/sections/contactsection';
-import Testimonials from './components/sections/testimonials';
+import ConciergeService from './components/sections/conciergeservice';
+import WhyChooseUs from './components/sections/whychooseus';
+import NeighbourhoodTour from './components/sections/neighbourhoodtour';
+import ConciergExperience from './components/sections/conciergexperience';
+import Protection from './components/sections/protection';
 import Footer from './components/layout/footer';
 import CookieBanner from './components/layout/cookiebanner';
 import ScrollToTop from './components/scrolltotop';
 
 const App: React.FC = () => {
   return (
-    <VibeProvider>
-      <div className="min-h-screen bg-white font-sans text-black selection:bg-green-100">
-        <Navbar />
-        <main>
-          <Hero />
-          {/* Replaced AboutUs with ConciergeService */}
-          <ConciergeService /> 
-          <Comparison />
-          <FeaturesGrid />
-          <StepFlow />
-          <Testimonials />
-          <ContactSection />
-          <ScrollToTop />
-        </main>
-        
-        <Footer />
-        
-        <CookieBanner />
-      </div>
-    </VibeProvider>
+    <div className="min-h-screen bg-white font-sans text-black selection:bg-green-100">
+      <Navbar />
+      <main>
+        {/*   Hero Section */}
+        <Hero />
+        {/*   Concierge Service */}
+        <ConciergeService /> 
+        {/*   why choose us */}
+        <WhyChooseUs />
+        {/*   Neigbourhood Tour */}
+        <NeighbourhoodTour />
+
+        {/* Concierge Experience */}
+        <ConciergExperience />
+
+        {/* Protection */}
+        <Protection />
+
+        <ScrollToTop />
+      </main>
+      <Footer />
+      <CookieBanner />
+    </div>
   );
 };
 

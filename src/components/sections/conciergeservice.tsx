@@ -14,7 +14,11 @@ const textVariants: Variants = {
 
 const ConciergeService: React.FC = () => {
   return (
-    <section id="solutions" className="py-24 md:py-40 px-6 bg-zinc-50/50 overflow-hidden relative">
+    // FIXED: Added 'section' tag name and removed extra quotation marks
+    <section 
+      id="solutions" 
+      className="pt-4 pb-20 md:pt-6 md:pb-24 md:-mt-24 px-6 bg-zinc-50/50 overflow-hidden relative"
+    >
       {/* Subtle Background Detail */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
         <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-zinc-200 to-transparent opacity-50" />
@@ -29,9 +33,10 @@ const ConciergeService: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={textVariants}
-          className="text-center max-w-4xl mx-auto mb-20 space-y-6"
+          // FIXED: Adjusted mb-20 to mb-12 to match the tighter spacing
+          className="text-center max-w-4xl mx-auto mb-12 md:mb-16 space-y-6"
         >
-          <h2 className="text-5xl md:text-8xl font-black leading-[0.9] tracking-tight text-zinc-900">
+          <h2 className="text-5xl md:text-6xl font-black leading-[0.9] tracking-tight text-zinc-900">
             Our Concierge <br className="hidden md:block" /> Service
           </h2>
           
@@ -47,11 +52,11 @@ const ConciergeService: React.FC = () => {
               LEARN MORE
             </Button>
           </div>
-        </motion.div>
+        </motion.div> 
 
         {/* Bottom Full-Width Image Container */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}

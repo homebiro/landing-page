@@ -11,6 +11,7 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'About Us', href: '#about' },
     { name: 'Solutions', href: '#solutions' },
+    { name: 'Pricing', href: '#pricing' }, // Added Pricing here
     { name: 'Work with Homebiro', href: '#work-with-us' },
     { name: 'Our Cities', href: '#cities' },
     { name: 'Contact', href: '#contact' },
@@ -159,7 +160,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-zinc-100 overflow-hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+        <div className={`lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-zinc-100 overflow-hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
           <div className="px-6 py-8 flex flex-col gap-6">
             {navLinks.map((link, i) => {
               const isActive = activeSection === link.href.replace('#', '');
