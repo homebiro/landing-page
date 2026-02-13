@@ -1,12 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import house from '../../assets/house.jpg'; 
 
 const WhyChooseUs: React.FC = () => {
   return (
     <section 
       id="solutions" 
-      // Reduced top padding (pt-10) to bring heading higher up
       className="pt-10 pb-24 md:pt-16 md:pb-32 px-6 bg-[#fafafa] overflow-hidden relative"
     >
       {/* Subtle Background Glow */}
@@ -16,7 +14,7 @@ const WhyChooseUs: React.FC = () => {
 
       <div className="max-w-6xl mx-auto relative z-10">
         
-        {/* TOP: Refined Heading - Reduced margin-bottom */}
+        {/* TOP: Refined Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,46 +29,49 @@ const WhyChooseUs: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* BOTTOM: Image Left (Extended), Chat Right */}
-        {/* Changed grid ratio to give the image more width (1.2fr) */}
+        {/* BOTTOM: Text Left, Chat Right */}
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-16 items-center">
           
-          {/* LEFT: Branding Image - Extended Width */}
+          {/* LEFT: Text Content (Replaced Image) */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative order-2 lg:order-1 flex justify-center lg:justify-start"
+            className="relative order-2 lg:order-1 flex flex-col justify-center"
           >
-            {/* Increased max-width to 600px to stretch to the right */}
-            <div className="relative group w-full max-w-[600px]">
-              <div className="relative rounded-[2.5rem] overflow-hidden aspect-[16/10] lg:aspect-[16/9] shadow-xl border border-zinc-200">
-                <img 
-                  src={house} 
-                  alt="Premium Living" 
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/40 via-transparent to-transparent" />
-                
-                <div className="absolute bottom-8 left-8 text-white">
-                  <p className="text-2xl font-bold tracking-tight text-white">Ibadan, NG</p>
-                  <p className="text-zinc-200 text-sm font-medium">Verified Community</p>
-                </div>
+            <div className="max-w-[600px] space-y-8">
+              <div className="space-y-4">
+                <h3 className="text-3xl md:text-4xl font-extrabold text-zinc-900 tracking-tight">
+                  Your safety and comfort <br /> are our <span className="text-[#1D4ED8]">top priorities.</span>
+                </h3>
+                <p className="text-lg text-zinc-600 leading-relaxed font-medium">
+                  At Home Biro, we don't just find you a room; we curate a living experience. 
+                  Our rigorous verification process ensures that every community member is 
+                  vetted, providing you with peace of mind and a secure environment to thrive.
+                </p>
               </div>
 
-              {/* Minimalist Floating Stats */}
-              <motion.div 
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -bottom-6 -right-4 bg-white py-4 px-6 rounded-2xl shadow-lg border border-zinc-100 hidden md:block z-20"
-              >
-                <p className="text-2xl font-black text-[#1D4ED8]">98%</p>
-                <p className="text-[10px] uppercase tracking-widest font-bold text-zinc-400">Match Accuracy</p>
-              </motion.div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-6 bg-white rounded-3xl border border-zinc-100 shadow-sm">
+                  <div className="w-10 h-10 bg-blue-50 text-[#1D4ED8] rounded-full flex items-center justify-center mb-4">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04kM12 21.48l.348-.13c2.635-.97 4.608-3.1 5.103-5.704a8.385 8.385 0 000-7.292" /></svg>
+                  </div>
+                  <h4 className="font-bold text-zinc-900 mb-1">Vetted Roommates</h4>
+                  <p className="text-sm text-zinc-500 font-medium">Verified identities for every match.</p>
+                </div>
+                
+                <div className="p-6 bg-white rounded-3xl border border-zinc-100 shadow-sm">
+                  <div className="w-10 h-10 bg-blue-50 text-[#1D4ED8] rounded-full flex items-center justify-center mb-4">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                  </div>
+                  <h4 className="font-bold text-zinc-900 mb-1">Zero Stress</h4>
+                  <p className="text-sm text-zinc-500 font-medium">Automated matching in minutes.</p>
+                </div>
+              </div>
             </div>
           </motion.div>
 
-          {/* RIGHT: Refined App UI */}
+          {/* RIGHT: App UI */}
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}

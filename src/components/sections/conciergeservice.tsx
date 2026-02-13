@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { Button } from '../ui/button';
-import conciergeServiceHero from '../../assets/concierge.png'; 
 
 const textVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -14,10 +13,9 @@ const textVariants: Variants = {
 
 const ConciergeService: React.FC = () => {
   return (
-    // FIXED: Added 'section' tag name and removed extra quotation marks
     <section 
       id="solutions" 
-      className="pt-4 pb-20 md:pt-6 md:pb-24 md:-mt-24 px-6 bg-zinc-50/50 overflow-hidden relative"
+      className="pt-12 pb-24 md:pt-20 md:pb-32 px-6 bg-zinc-50/50 overflow-hidden relative"
     >
       {/* Subtle Background Detail */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
@@ -27,57 +25,33 @@ const ConciergeService: React.FC = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Centered Header Content */}
+        {/* Centered Content */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={textVariants}
-          // FIXED: Adjusted mb-20 to mb-12 to match the tighter spacing
-          className="text-center max-w-4xl mx-auto mb-12 md:mb-16 space-y-6"
+          className="text-center max-w-4xl mx-auto space-y-10"
         >
-          <h2 className="text-5xl md:text-6xl font-black leading-[0.9] tracking-tight text-zinc-900">
+          {/* Main Heading */}
+          <h2 className="text-6xl md:text-8xl font-black leading-[0.85] tracking-tighter text-zinc-900">
             Our Concierge <br className="hidden md:block" /> Service
           </h2>
           
-          <div className="flex flex-col items-center gap-8">
-            <p className="text-lg md:text-xl text-zinc-500 max-w-xl mx-auto leading-relaxed">
+          <div className="flex flex-col items-center gap-10">
+            <p className="text-xl md:text-2xl text-zinc-500 max-w-2xl mx-auto leading-relaxed font-medium">
               Expert representation designed around your rental journey. Because real estate laws differ, 
               our concierge features and pricing are tailored to align with the unique requirements of each state.
             </p>
             
             <Button 
-              className="rounded-full px-10 py-6 !bg-[#1D4ED8] !text-white hover:!bg-[#153ca3] hover:scale-105 transition-all duration-300 font-bold text-sm shadow-xl shadow-blue-200/50 border-none h-auto"
+              className="rounded-full px-12 py-7 !bg-[#1D4ED8] !text-white hover:!bg-[#153ca3] hover:scale-105 transition-all duration-300 font-bold text-base shadow-2xl shadow-blue-200/50 border-none h-auto uppercase tracking-wider"
             >
-              LEARN MORE
+              Learn More
             </Button>
           </div>
         </motion.div> 
 
-        {/* Bottom Full-Width Image Container */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          className="relative w-full rounded-[2.5rem] md:rounded-[5rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] md:aspect-[21/9] group bg-zinc-200"
-        >
-          <img 
-            src={conciergeServiceHero} 
-            alt="Homebiro Concierge Service" 
-            className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
-          />
-          
-          {/* Refined Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-8 md:p-20">
-            <div className="max-w-2xl space-y-4">
-              <div className="w-12 h-1 bg-[#1D4ED8]" />
-              <p className="text-white text-2xl md:text-4xl font-bold leading-tight">
-                Professional boots on the ground, representing your interests in every city.
-              </p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
