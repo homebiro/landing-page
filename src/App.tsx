@@ -5,6 +5,8 @@ import ConciergeService from './components/sections/conciergeservice';
 import CitiesNetwork from './components/sections/citiesnetwork';
 import WhyChooseUs from './components/sections/whychooseus';
 import Testimonial from './components/sections/testimonial';
+import CertifiedConcierge from './components/sections/certifiedconcierge';
+import SuccessMatrics from './components/sections/successmatrics';
 // import NeighbourhoodTour from './components/sections/neighbourhoodtour';
 // import ConciergExperience from './components/sections/conciergexperience';
 // import Protection from './components/sections/protection';
@@ -36,6 +38,12 @@ const App: React.FC = () => {
 
           {/*   why choose us */}
           <Testimonial />
+
+           {/*   why choose us */}
+          <CertifiedConcierge />
+
+          {/*   why choose us */}
+          <SuccessMatrics />
 
           <ScrollToTop />
         </main>
