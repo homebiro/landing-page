@@ -4,9 +4,9 @@ import Hero from './components/sections/hero';
 import ConciergeService from './components/sections/conciergeservice';
 import CitiesNetwork from './components/sections/citiesnetwork';
 import WhyChooseUs from './components/sections/whychooseus';
-import NeighbourhoodTour from './components/sections/neighbourhoodtour';
-import ConciergExperience from './components/sections/conciergexperience';
-import Protection from './components/sections/protection';
+// import NeighbourhoodTour from './components/sections/neighbourhoodtour';
+// import ConciergExperience from './components/sections/conciergexperience';
+// import Protection from './components/sections/protection';
 import Footer from './components/layout/footer';
 import CookieBanner from './components/layout/cookiebanner';
 import ScrollToTop from './components/scrolltotop';
@@ -32,15 +32,6 @@ const App: React.FC = () => {
 
           {/*   why choose us */}
           <WhyChooseUs />
-
-          {/*   Neigbourhood Tour */}
-          <NeighbourhoodTour />
-
-          {/* Concierge Experience */}
-          <ConciergExperience />
-
-          {/* Protection */}
-          <Protection />
 
           <ScrollToTop />
         </main>

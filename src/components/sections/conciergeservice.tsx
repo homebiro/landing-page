@@ -15,7 +15,8 @@ const ConciergeService: React.FC = () => {
   return (
     <section 
       id="solutions" 
-      className="pt-12 pb-24 md:pt-20 md:pb-32 px-6 bg-zinc-50/50 overflow-hidden relative"
+      /* Reduced pt-12 to pt-4 and md:pt-20 to md:pt-8 to move it up */
+      className="relative pt-4 md:pt-8 pb-24 md:pb-32 px-6 bg-zinc-50/50 overflow-hidden"
     >
       {/* Subtle Background Detail */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
@@ -31,21 +32,22 @@ const ConciergeService: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={textVariants}
-          className="text-center max-w-4xl mx-auto space-y-10"
+          className="text-center max-w-5xl mx-auto space-y-8"
         >
-          {/* Main Heading */}
-          <h2 className="text-6xl md:text-8xl font-black leading-[0.85] tracking-tighter text-zinc-900">
-            Our Concierge <br className="hidden md:block" /> Service
+          {/* PREMIUM HEADLINE */}
+          <h2 className="text-4xl md:text-[60px] font-extrabold leading-[1.1] tracking-[-0.04em] text-[#2F3337]">
+            Our Concierge Service
           </h2>
           
-          <div className="flex flex-col items-center gap-10">
-            <p className="text-xl md:text-2xl text-zinc-500 max-w-2xl mx-auto leading-relaxed font-medium">
-              Expert representation designed around your rental journey. Because real estate laws differ, 
-              our concierge features and pricing are tailored to align with the unique requirements of each state.
+          <div className="flex flex-col items-center gap-8">
+            {/* BOLT-STYLE STRETCHED DESCRIPTION */}
+            <p className="text-[17px] md:text-[20px] text-[#4F5662] max-w-4xl leading-[1.6] font-medium tracking-tight">
+              Pricing and features varies base on your hunting state
             </p>
             
+            {/* FORMAL BUTTON STYLE */}
             <Button 
-              className="rounded-full px-12 py-7 !bg-[#1D4ED8] !text-white hover:!bg-[#153ca3] hover:scale-105 transition-all duration-300 font-bold text-base shadow-2xl shadow-blue-200/50 border-none h-auto uppercase tracking-wider"
+              className="w-full sm:w-auto flex items-center justify-center rounded-lg text-[15px] font-bold px-10 h-[56px] sm:min-w-[220px] !bg-[#1D4ED8] !text-white hover:!bg-[#153ca3] transition-all duration-300 border-none shadow-none"
             >
               Learn More
             </Button>

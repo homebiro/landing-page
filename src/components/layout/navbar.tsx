@@ -11,10 +11,9 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'About Us', href: '#about' },
     { name: 'Solutions', href: '#solutions' },
-    { name: 'Pricing', href: '#pricing' }, // Added Pricing here
     { name: 'Work with Homebiro', href: '#work-with-us' },
+    { name: 'Pricing', href: '#pricing' },
     { name: 'Our Cities', href: '#cities' },
-    { name: 'Contact', href: '#contact' },
   ];
 
   useEffect(() => {
@@ -86,9 +85,9 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav className="fixed top-0 w-full bg-zinc-50/90 backdrop-blur-xl z-[90] border-b border-zinc-200 transition-all duration-300 hover:bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
           
-          {/* Logo Area */}
+          {/* Logo Area - Stays Left */}
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center">
               <img 
@@ -99,8 +98,8 @@ const Navbar: React.FC = () => {
             </a>
           </div>
 
-          {/* CENTRALIZED NAV LINKS */}
-          <div className="hidden lg:flex flex-1 justify-center items-center gap-8 text-sm font-semibold text-zinc-500">
+          {/* NAV LINKS & EMAIL - Pushed Right */}
+          <div className="hidden lg:flex flex-1 justify-end items-center gap-8 text-sm font-semibold text-zinc-500 mr-4">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace('#', '');
               return (
@@ -122,9 +121,14 @@ const Navbar: React.FC = () => {
                 </a>
               );
             })}
+
+            {/* SUPPORT EMAIL TEXT - Updated to Deep Blue (#1D4ED8) */}
+            <span className="text-[#1D4ED8] py-2 cursor-default font-bold whitespace-nowrap">
+              Email: surport@homebiro.com
+            </span>
           </div>
 
-          {/* Right Action Buttons */}
+          {/* Right Action Buttons - Anchored Right */}
           <div className="flex items-center gap-4 flex-shrink-0">
             <div className="relative group hidden sm:block">
               <button 
@@ -160,7 +164,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-zinc-100 overflow-hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+        <div className={`lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-zinc-100 overflow-hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen ? 'max-h-[700px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
           <div className="px-6 py-8 flex flex-col gap-6">
             {navLinks.map((link, i) => {
               const isActive = activeSection === link.href.replace('#', '');
@@ -182,6 +186,15 @@ const Navbar: React.FC = () => {
                 </a>
               );
             })}
+
+            {/* Mobile Email - Updated to Deep Blue (#1D4ED8) */}
+            <span 
+              className={`text-lg font-bold text-[#1D4ED8] transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-4'}`}
+              style={{ transitionDelay: `${navLinks.length * 50}ms` }}
+            >
+              Email: surport@homebiro.com
+            </span>
+
             <div className="pt-6 border-t border-zinc-100 flex flex-col gap-4">
                <button 
                 onClick={() => { setIsModalOpen(true); setIsMobileMenuOpen(false); }}

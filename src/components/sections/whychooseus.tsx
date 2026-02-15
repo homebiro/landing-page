@@ -1,138 +1,147 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
+import fee from '../../assets/fee.png';
+import tour from '../../assets/tour.png';
+import roommate from '../../assets/roommate.png';
+import concierge from '../../assets/concierge.png';
+import protection from '../../assets/protection.png';
+
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
+  }
+};
 
 const WhyChooseUs: React.FC = () => {
-  return (
-    <section 
-      id="solutions" 
-      className="pt-10 pb-24 md:pt-16 md:pb-32 px-6 bg-[#fafafa] overflow-hidden relative"
-    >
-      {/* Subtle Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-[0.03] pointer-events-none">
-        <div className="absolute top-12 left-10 w-72 h-72 bg-[#1D4ED8] rounded-full blur-[100px]" />
-      </div>
+  const features = [
+    {
+      title: "Our Fee Structure",
+      description: "We structured our fees to serve as a financial shield, ensuring you only pay for actual value and never for exploitation",
+      image: fee,
+      linkText: "View pricing",
+      isFeeStructure: true // Specific flag for the custom layout
+    },
+    {
+      title: "Neighbourhood Tour",
+      description: "We help you experience the neighbourhood vibe before even committing to hunt",
+      image: tour,
+      linkText: "Explore cities"
+    },
+    {
+      title: "Post Roommate Request",
+      description: "Connect freely with people who might want to live with you.",
+      image: roommate,
+      linkText: "Find matches"
+    },
+    {
+      title: "Full Concierge Experience",
+      description: (
+        <div className="space-y-4">
+          <p>
+            From the moment you pay your one-time activation fee on our app, you unlock a 
+            personalized <span className="text-[#2F3337] font-bold">"Tenant’s Concierge Service."</span>
+          </p>
+          <p>
+            A dedicated representative guides you through the entire process—from 
+            managing your hunt request to move-in and beyond.
+          </p>
+        </div>
+      ),
+      image: concierge,
+      linkText: "Learn about concierge"
+    },
+    {
+      title: "Protection",
+      description: (
+        <div className="space-y-4">
+          <p>Our "Protect" protocol ensures you are never left vulnerable to unfair charges or substandard living conditions.</p>
+          <ul className="space-y-3 text-[16px] md:text-[18px]">
+            <li><span className="font-bold text-[#2F3337]">Financial Safeguard:</span> Our Move-In Checklist documents every inch of your space to ensure you get your full caution fee back.</li>
+            <li><span className="font-bold text-[#2F3337]">Family-First Vetting:</span> We vet properties as if our own families were moving in. If it's not good enough for them, it's not shown to you.</li>
+            <li><span className="font-bold text-[#2F3337]">Instant Legal Empowerment:</span> Receive our exclusive book, “Landlord, Agent & Your Rights,” to handle disputes confidently.</li>
+          </ul>
+        </div>
+      ),
+      image: protection,
+      linkText: "Our safety standards"
+    }
+  ];
 
-      <div className="max-w-6xl mx-auto relative z-10">
+  return (
+    <section id="why-choose-us" className="py-24 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
         
-        {/* TOP: Refined Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          className="text-center mb-12 md:mb-16"
+          variants={sectionVariants}
+          className="mb-20 text-center"
         >
-          <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight text-zinc-900 mb-4">
+          <h2 className="text-4xl md:text-[64px] font-extrabold tracking-[-0.04em] text-[#2F3337] mb-6">
             Why <span className="text-[#1D4ED8]">Choose</span> Us
           </h2>
-          <p className="text-lg md:text-xl text-zinc-500 font-medium max-w-2xl mx-auto leading-relaxed">
-            Join a community of over <span className="text-zinc-900 font-bold italic">1,000+ Nigerians</span> redefining shared living every single month.
+          <p className="text-[19px] md:text-[22px] text-[#4F5662] max-w-2xl mx-auto font-medium leading-[1.5]">
+            Join a community of over 1,000+ people redefining the rental journey every single month.
           </p>
         </motion.div>
 
-        {/* BOTTOM: Text Left, Chat Right */}
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-16 items-center">
-          
-          {/* LEFT: Text Content (Replaced Image) */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative order-2 lg:order-1 flex flex-col justify-center"
-          >
-            <div className="max-w-[600px] space-y-8">
-              <div className="space-y-4">
-                <h3 className="text-3xl md:text-4xl font-extrabold text-zinc-900 tracking-tight">
-                  Your safety and comfort <br /> are our <span className="text-[#1D4ED8]">top priorities.</span>
-                </h3>
-                <p className="text-lg text-zinc-600 leading-relaxed font-medium">
-                  At Home Biro, we don't just find you a room; we curate a living experience. 
-                  Our rigorous verification process ensures that every community member is 
-                  vetted, providing you with peace of mind and a secure environment to thrive.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 bg-white rounded-3xl border border-zinc-100 shadow-sm">
-                  <div className="w-10 h-10 bg-blue-50 text-[#1D4ED8] rounded-full flex items-center justify-center mb-4">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04kM12 21.48l.348-.13c2.635-.97 4.608-3.1 5.103-5.704a8.385 8.385 0 000-7.292" /></svg>
-                  </div>
-                  <h4 className="font-bold text-zinc-900 mb-1">Vetted Roommates</h4>
-                  <p className="text-sm text-zinc-500 font-medium">Verified identities for every match.</p>
-                </div>
-                
-                <div className="p-6 bg-white rounded-3xl border border-zinc-100 shadow-sm">
-                  <div className="w-10 h-10 bg-blue-50 text-[#1D4ED8] rounded-full flex items-center justify-center mb-4">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                  </div>
-                  <h4 className="font-bold text-zinc-900 mb-1">Zero Stress</h4>
-                  <p className="text-sm text-zinc-500 font-medium">Automated matching in minutes.</p>
+        <div className="space-y-32">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={sectionVariants}
+              className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-24 ${
+                index % 2 !== 0 ? 'lg:flex-row-reverse' : ''
+              }`}
+            >
+              {/* IMAGE SIDE */}
+              <div className="w-full lg:w-[45%]">
+                <div 
+                  className={`relative overflow-hidden rounded-[1.5rem] bg-[#F8F9FB] shadow-sm border border-zinc-100 group/img 
+                  ${feature.isFeeStructure ? 'h-auto' : 'aspect-[3/4]'}`}
+                >
+                  <img 
+                    src={feature.image} 
+                    alt={feature.title} 
+                    className={`w-full h-full transition-transform duration-1000 group-hover/img:scale-105 
+                      ${feature.isFeeStructure ? 'block object-top' : 'object-cover'}`}
+                  />
                 </div>
               </div>
-            </div>
-          </motion.div>
 
-          {/* RIGHT: App UI */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative flex justify-center lg:justify-end order-1 lg:order-2"
-          >
-            <div className="relative w-full max-w-[300px] bg-[#050505] rounded-[3.5rem] p-2 shadow-2xl border border-zinc-800">
-              <div className="relative w-full h-full bg-zinc-50 rounded-[3rem] overflow-hidden">
-                
-                {/* Compact App Header */}
-                <div className="bg-white/90 backdrop-blur-md p-4 pt-8 flex items-center gap-3 border-b border-zinc-100">
-                  <div className="w-10 h-10 rounded-xl bg-[#1D4ED8] flex items-center justify-center font-bold text-white shadow-lg">HB</div>
-                  <div>
-                    <p className="text-zinc-900 text-xs font-bold">Home Biro</p>
-                    <p className="text-green-500 text-[9px] font-bold uppercase tracking-widest flex items-center gap-1">
-                      <span className="w-1 h-1 bg-green-500 rounded-full animate-pulse" /> Online
-                    </p>
+              {/* TEXT SIDE */}
+              <div className="w-full lg:w-[55%] flex justify-center">
+                <div className="max-w-md w-full">
+                  <h3 className="text-3xl md:text-5xl font-extrabold text-[#2F3337] mb-6 tracking-tight leading-tight">
+                    {feature.title}
+                  </h3>
+                  <div className="text-[17px] md:text-[20px] text-[#4F5662] leading-[1.6] mb-8 font-medium">
+                    {feature.description}
                   </div>
-                </div>
-
-                {/* Compact Chat Body */}
-                <div className="h-[360px] p-5 flex flex-col gap-5 overflow-y-auto bg-[#FBFBFB]">
-                  <div className="flex flex-col gap-1.5">
-                    <div className="bg-white text-zinc-800 p-4 rounded-2xl rounded-tl-none shadow-sm border border-zinc-100 max-w-[85%]">
-                        <p className="text-xs leading-relaxed font-medium text-zinc-800">
-                        I need a roommate match in <span className="text-[#1D4ED8] font-bold">Oluyole</span>.
-                        </p>
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center gap-4 text-[#1D4ED8] font-bold text-lg md:text-xl group"
+                  >
+                    <span className="border-b-2 border-transparent group-hover:border-[#1D4ED8] transition-all duration-300">
+                      {feature.linkText}
+                    </span>
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl border border-zinc-200 flex items-center justify-center group-hover:bg-[#1D4ED8] group-hover:text-white transition-all duration-300">
+                        <svg className="w-5 h-5 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
                     </div>
-                  </div>
-
-                  <div className="flex flex-col items-end gap-1.5">
-                    <div className="bg-[#1D4ED8] text-white p-4 rounded-2xl rounded-tr-none shadow-md max-w-[85%]">
-                        <p className="text-xs leading-relaxed font-medium text-white">
-                        Checking... we have 3 matches that fit your vibe!
-                        </p>
-                    </div>
-                    <span className="text-[8px] text-zinc-400 font-bold uppercase mr-1">Seen</span>
-                  </div>
-
-                  <div className="flex items-center gap-2 px-1">
-                    <div className="flex gap-1">
-                        <span className="w-1.5 h-1.5 bg-[#1D4ED8] rounded-full animate-bounce" />
-                        <span className="w-1.5 h-1.5 bg-[#1D4ED8] rounded-full animate-bounce [animation-delay:0.2s]" />
-                    </div>
-                    <span className="text-[9px] font-bold text-[#1D4ED8] uppercase tracking-wider">Searching...</span>
-                  </div>
-                </div>
-
-                {/* Refined Input */}
-                <div className="p-4 bg-white border-t border-zinc-100">
-                  <div className="h-10 bg-zinc-50 rounded-xl border border-zinc-200 px-4 flex items-center justify-between">
-                    <span className="text-zinc-400 text-[10px] font-medium">Type a message...</span>
-                    <div className="w-7 h-7 bg-zinc-900 rounded-lg flex items-center justify-center text-white">
-                        <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path d="M12 4.5v15m7.5-7.5h-15"></path></svg>
-                    </div>
-                  </div>
+                  </a>
                 </div>
               </div>
-            </div>
-          </motion.div>
-
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
