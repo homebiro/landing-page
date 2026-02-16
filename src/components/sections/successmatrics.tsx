@@ -164,9 +164,6 @@ const SuccessMetrics: React.FC = () => {
           className="flex flex-col items-center mt-12 md:mt-16"
         >
           <div className="h-px w-12 bg-zinc-200 mb-6" />
-          <p className="text-zinc-400 text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-medium">
-            Live Ecosystem Data • Updated Feb 2026
-          </p>
         </motion.div>
 
       </div>
