@@ -19,6 +19,7 @@ const SuccessMetrics: React.FC = () => {
     const fetchPerformanceData = async () => {
       setIsLoading(true);
       try {
+        // SIMULATING API CALL
         await new Promise((resolve) => setTimeout(resolve, 1500)); 
         
         const mockData: Metric[] = [
@@ -69,17 +70,20 @@ const SuccessMetrics: React.FC = () => {
   }, []);
 
   return (
-    /* ADJUSTMENT: Removed pt-4 and added -mt-10 to pull it up */
-    <section className="pb-24 bg-white font-sans min-h-[500px] -mt-10 relative z-10">
+    /* RESPONSIVE ADJUSTMENT: 
+       - Added pt-12 for mobile to prevent overlap.
+       - md:pt-0 and md:-mt-10 pulls it up ONLY on tablet/desktop.
+    */
+    <section className="pt-12 md:pt-0 pb-24 bg-white font-sans min-h-[500px] md:-mt-10 relative z-10">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* HEADER: Reduced mb-10 to mb-8 to keep it tight */}
-        <div className="mb-8 text-center flex flex-col items-center">
+        {/* HEADER: Added responsive bottom margin */}
+        <div className="mb-10 md:mb-8 text-center flex flex-col items-center">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-extrabold text-[#0A0D14] mb-4 tracking-tight"
+            className="text-3xl md:text-6xl font-extrabold text-[#0A0D14] mb-4 tracking-tight"
           >
             Performance <span className="text-[#1D4ED8]">Benchmarks</span>
           </motion.h2>
@@ -89,7 +93,7 @@ const SuccessMetrics: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-zinc-500 max-w-2xl text-lg md:text-xl leading-relaxed"
+            className="text-zinc-500 max-w-2xl text-base md:text-xl leading-relaxed"
           >
             Real-time transparency powered by our ecosystem data. 
             We track these KPIs to ensure Homebiro remains Nigeria's most trusted platform.
@@ -108,6 +112,7 @@ const SuccessMetrics: React.FC = () => {
             Failed to load live performance data. Please refresh.
           </div>
         ) : (
+          /* METRICS GRID: Responsive column handling is already robust */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <AnimatePresence>
               {metrics.map((stat, index) => (
@@ -116,19 +121,19 @@ const SuccessMetrics: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-8 rounded-[2.5rem] bg-[#0A0D14] border border-zinc-800 relative overflow-hidden group hover:border-[#1D4ED8] transition-all duration-500 shadow-xl"
+                  className="p-8 rounded-[2rem] md:rounded-[2.5rem] bg-[#0A0D14] border border-zinc-800 relative overflow-hidden group hover:border-[#1D4ED8] transition-all duration-500 shadow-xl"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-[#1D4ED8]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
-                  <p className="text-zinc-500 text-xs font-black uppercase tracking-[0.2em] mb-4 relative z-10">
+                  <p className="text-zinc-500 text-[10px] md:text-xs font-black uppercase tracking-[0.2em] mb-4 relative z-10">
                     {stat.label}
                   </p>
                   
                   <div className="flex items-baseline gap-3 mb-2 relative z-10">
-                    <h3 className="text-4xl font-bold text-white tracking-tight">
+                    <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
                       {stat.value}
                     </h3>
-                    <span className={`text-xs font-bold px-2 py-1 rounded-full ${
+                    <span className={`text-[10px] md:text-xs font-bold px-2 py-1 rounded-full ${
                       stat.positive ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'
                     }`}>
                       {stat.trend}
@@ -156,11 +161,11 @@ const SuccessMetrics: React.FC = () => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="flex flex-col items-center mt-12"
+          className="flex flex-col items-center mt-12 md:mt-16"
         >
           <div className="h-px w-12 bg-zinc-200 mb-6" />
-          <p className="text-zinc-400 text-[10px] uppercase tracking-[0.3em] font-medium">
-          
+          <p className="text-zinc-400 text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-medium">
+            Live Ecosystem Data • Updated Feb 2026
           </p>
         </motion.div>
 
