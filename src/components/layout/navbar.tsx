@@ -12,6 +12,7 @@ const Navbar: React.FC = () => {
     { name: 'About Us', href: '#about-us' },
     { name: 'Solutions', href: '#solutions' },
     { name: 'Work with Homebiro', href: '#certified-concierge' },
+    // Pointing to the specific feature ID we created in Step 1
     { name: 'Pricing', href: '#pricing' }, 
     { name: 'Our Cities', href: '#cities' },
   ];
@@ -28,6 +29,7 @@ const Navbar: React.FC = () => {
     };
 
     const observerOptions = {
+      // Adjusted margin so it triggers when the section is near the top
       rootMargin: '-30% 0px -60% 0px',
       threshold: 0,
     };
@@ -39,6 +41,9 @@ const Navbar: React.FC = () => {
       const element = document.getElementById(sectionId);
       if (element) observer.observe(element);
     });
+
+    const vibeCheck = document.getElementById('vibe-check');
+    if (vibeCheck) observer.observe(vibeCheck);
 
     const handleScroll = () => {
       if (window.scrollY < 50) {
@@ -61,7 +66,7 @@ const Navbar: React.FC = () => {
     const element = document.getElementById(sectionId);
     
     if (element) {
-      const offset = 100; 
+      const offset = 100; // Slightly larger offset for better visibility
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -87,7 +92,6 @@ const Navbar: React.FC = () => {
             </a>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex flex-1 justify-end items-center gap-8 text-sm font-semibold text-zinc-500 mr-4">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace('#', '');
@@ -151,16 +155,6 @@ const Navbar: React.FC = () => {
                 {link.name}
               </a>
             ))}
-
-            {/* Support Email for Mobile */}
-            <div className="pt-6 mt-2 border-t border-zinc-100">
-              <a 
-                href="mailto:support@homebiro.com" 
-                className="text-[#1D4ED8] font-bold text-lg hover:underline transition-all"
-              >
-                Email: support@homebiro.com
-              </a>
-            </div>
           </div>
         </div>
       </nav>
