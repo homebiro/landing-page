@@ -155,6 +155,16 @@ const Navbar: React.FC = () => {
                 {link.name}
               </a>
             ))}
+
+            {/* Mobile Support Email Link */}
+            <div className="pt-6 mt-2 border-t border-zinc-100">
+              <a 
+                href="mailto:support@homebiro.com" 
+                className="text-[#1D4ED8] font-bold text-lg hover:underline transition-all"
+              >
+                Email: support@homebiro.com
+              </a>
+</div>
           </div>
         </div>
       </nav>
@@ -165,3 +175,4 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
