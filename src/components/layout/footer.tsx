@@ -81,10 +81,10 @@ const Footer: React.FC = () => {
                   Coming Soon
                 </div>
                 <h4 className="font-bold text-xl text-white leading-tight">
-                  Manage Your Estate.
+                  Dowload the App.
                 </h4>
                 <p className="text-white text-xs leading-relaxed">
-                  Join 500+ house hunters on the waitlist for exclusive estate oversight tools.
+                  Join 500+ house hunters on the waitlist to download the app
                 </p>
                 
                 <Button 
@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
             <p className="leading-relaxed">
               © {currentYear} HOMEBIRO SOLUTIONS LTD. ALL RIGHTS RESERVED. 
               <span className="block mt-4 opacity-50">
-                <a href="#" className="cursor-default hover:text-white transition-colors">
+                <a href="https://www.linkedin.com/company/lyridra-technology/" className="cursor-default hover:text-white transition-colors">
                   Powered by Lyridra
                 </a>
               </span>
