@@ -210,7 +210,7 @@ const WhyChooseUs: React.FC = () => {
                     </div>
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2 ml-1">Preferred Location</label>
-                      <input required type="text" className="w-full p-4 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="e.g. Lekki, Lagos" />
+                      <input required type="text" className="w-full p-4 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="e.g. ibadan, Lagos" />
                     </div>
                     <button type="submit" className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 mt-4">
                       Start Hunting
