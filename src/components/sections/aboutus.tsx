@@ -23,10 +23,31 @@ const WhyChooseUs: React.FC = () => {
   const [selectedPlan, setSelectedPlan] = useState("");
 
   const pricingPlans = [
-    { name: "The Scout (Tier 1)", price: "Free", features: ["Unlimited Apartment Viewing", "N5,000 Inspection Fee", "Post Shared Apartment Request"], color: "bg-zinc-100 text-zinc-900 border-zinc-200" },
-    { name: "The Solo Hunter (Tier 2)", price: "N12,500", features: ["Zero Inspection Fee", "Max. 3 physical inspections", "Move-in Checklist", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], color: "bg-blue-50 text-blue-900 border-blue-100", highlight: true },
-    { name: "The Family Suite (Tier 3)", price: "N20,000", features: ["Zero Inspection Fee", "Max. 4 physical inspections", "Move-in Checklist", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], color: "bg-zinc-900 text-white border-zinc-800" },
-    { name: "The Full Concierge Experience", price: "N50,000", features: ["All the Benefits of Tier 2 & 3", "Neighbourhood Tour", "Unlimited Remote Proxy Inspection", "Rental Fee Negotiation", "Legal Support"], color: "bg-blue-600 text-white border-blue-500" }
+    { 
+      name: "The Scout (Tier 1)", 
+      price: "Free", 
+      features: ["Unlimited Apartment Viewing", "Charge Inspection Fee", "Post Shared Apartment Request"], 
+      color: "bg-zinc-100 text-zinc-900 border-zinc-200" 
+    },
+    { 
+      name: "The Solo Hunter (Tier 2)", 
+      price: "N12,500", 
+      features: ["Zero Inspection Fee", "Max. 3 physical inspections", "Move-in Checklist", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], 
+      color: "bg-blue-50 text-blue-900 border-blue-100", 
+      highlight: true 
+    },
+    { 
+      name: "The Family Suite (Tier 3)", 
+      price: "N20,000", 
+      features: ["Zero Inspection Fee", "Max. 4 physical inspections", "Move-in Checklist", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], 
+      color: "bg-zinc-900 text-white border-zinc-800" 
+    },
+    { 
+      name: "The Full Concierge Experience", 
+      price: "N59,500", 
+      features: ["All the Benefits of Tier 2 & 3", "Neighbourhood Tour", "3 Remote Proxy Inspection", "Access Vetted Handyman Services", "Rental Fee Negotiation", "Legal Support"], 
+      color: "bg-blue-600 text-white border-blue-500" 
+    }
   ];
 
   const features = [
@@ -38,8 +59,6 @@ const WhyChooseUs: React.FC = () => {
       isFeeStructure: true,
       onClick: () => setIsPricingOpen(true)
     },
-
-
     {
       title: "Neighbourhood Tour",
       description: "We help you experience the neighbourhood vibe before even committing to hunt in that area",                                    
@@ -80,7 +99,6 @@ const WhyChooseUs: React.FC = () => {
     }
   ];
 
-  // Logic to handle which item gets which ID for the Navbar to find
   const getSectionId = (title: string) => {
     if (title === "Our Fee Structure") return "pricing";
     if (title === "Neighbourhood Tour") return "cities";
@@ -109,7 +127,7 @@ const WhyChooseUs: React.FC = () => {
           {features.map((feature, index) => (
             <motion.div 
               key={index} 
-              id={getSectionId(feature.title)} // Correctly assigns "pricing" or "cities"
+              id={getSectionId(feature.title)}
               initial="hidden" 
               whileInView="visible" 
               viewport={{ once: true, margin: "-100px" }} 
@@ -138,7 +156,6 @@ const WhyChooseUs: React.FC = () => {
         </div>
       </div>
 
-      {/* Modals for Pricing and Form (Kept the same) */}
       <AnimatePresence>
         {isPricingOpen && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
@@ -203,7 +220,7 @@ const WhyChooseUs: React.FC = () => {
               ) : (
                 <div className="py-12 text-center space-y-4">
                     <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                       <Check size={40} strokeWidth={3} />
+                        <Check size={40} strokeWidth={3} />
                     </div>
                     <h3 className="text-2xl font-bold text-zinc-900">House Hunting Request Sent!</h3>
                     <p className="text-zinc-600 text-lg font-medium">Homebiro will reach out to you shortly .</p>
