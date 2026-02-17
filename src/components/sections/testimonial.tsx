@@ -19,18 +19,17 @@ const cardVariants: Variants = {
 const Testimonials: React.FC = () => {
   const testimonials = [
     {
-      name: "Chidi Okoro",
-      role: "Tenant in Lagos",
-      // Replace with your actual asset paths
+      name: "Gabriel Olakunle",
+      role: "Gabriel in Oluyole, Ibadan",
       avatar: man1, 
       content: "The Concierge service is a game changer. I was worried about the move-in process, but having a dedicated rep made sure I didn't pay a kobo more than necessary. Finally, a platform that actually protects the tenant.",
     },
     {
-      name: "Sarah Williams",
-      role: "Recent Graduate",
-      // Replace with your actual asset paths
+      name: "Ayo Arcani",
+      role: "Tenant in Kolapo Ishola",
       avatar: lady,
-      content: "I found my roommate and my apartment through here. The vetting process gave me so much peace of mind. The 'Landlord & Your Rights' book they gave me has already saved me from one major dispute!",
+      content: " I wish I had met Treg from Homebiro 4 years ago when I moved to Ibadan. It took me 4 years of moving from different apartments before we met, and I used the concierge service that served me. I haven't had an issue with the pricing so far; Treg was open-minded and helped me get what i wnated",
+
     }
   ];
 
@@ -40,11 +39,12 @@ const Testimonials: React.FC = () => {
         
         {/* Header */}
         <div className="mb-16 text-center">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#2F3337] mb-4">
-            Hear from our <span className="text-[#1D4ED8]">Community</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[#2F3337] mb-6 tracking-tight leading-[1.2]">
+            What our clients are saying <br className="hidden md:block" /> 
+            <span className="text-[#1D4ED8]">in the last 7 days</span>
           </h2>
           <p className="text-[#4F5662] text-lg max-w-xl mx-auto font-medium">
-            Real stories from people who redefined their rental journey with us.
+           Real comments from people who redefined their rental journey with us in real time.
           </p>
         </div>
 

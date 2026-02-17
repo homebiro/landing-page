@@ -24,7 +24,7 @@ const CertifiedConcierge: React.FC = () => {
   };
 
   return (
-    <section className="py-12 md:py-24 lg:py-32 bg-white font-sans overflow-hidden">
+    <section id="certified-concierge" className="py-12 md:py-24 lg:py-32 bg-white font-sans overflow-hidden">
       <style dangerouslySetInnerHTML={{ __html: `
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
@@ -52,13 +52,15 @@ const CertifiedConcierge: React.FC = () => {
                   Partnership Opportunity
                 </span>
                 <h2 className="text-3xl md:text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-6 md:mb-8">
-                  Become a certified <br />
+                  Become Our Tenant <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8]">
-                    Homebiro Concierge
+                    Concierge
                   </span>
                 </h2>
                 <p className="text-base md:text-xl text-zinc-400 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                  Join an elite network of professionals. Earn industry-leading commissions by facilitating premium rentals for Nigeria's top 1% of tenants.
+                  JOIN OUR PHYSICAL NETWORK OF PROFESSIONALS IN CITIES
+                  WORKING FROM HOME. Earn industry-leading commissions by
+                  facilitating premium rentals for House Hunters.
                 </p>
               </motion.div>
             </div>
@@ -74,7 +76,7 @@ const CertifiedConcierge: React.FC = () => {
                 {!submitted ? (
                   <motion.form key="form" exit={{ opacity: 0, y: -10 }} onSubmit={handleSubmit} className="space-y-5">
                     <div className="space-y-1.5">
-                      <label className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest ml-1">Full Name</label>
+                      <label className="text-white text-[10px] font-bold uppercase tracking-widest ml-1">Full Name</label>
                       <input 
                         type="text" 
                         placeholder="e.g. Chidi Okoro"
@@ -84,7 +86,7 @@ const CertifiedConcierge: React.FC = () => {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest ml-1">Professional Email</label>
+                      <label className="text-white text-[10px] font-bold uppercase tracking-widest ml-1">Professional Email</label>
                       <input 
                         type="email" 
                         value={email}
@@ -96,7 +98,7 @@ const CertifiedConcierge: React.FC = () => {
                     </div>
 
                     <div className="relative space-y-1.5">
-                      <label className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest ml-1">Primary Region</label>
+                      <label className="text-white text-[10px] font-bold uppercase tracking-widest ml-1">Primary Region</label>
                       <div 
                         onClick={() => setIsOpen(!isOpen)}
                         className={`w-full bg-zinc-900/60 border border-white/10 rounded-xl px-5 py-3.5 text-white cursor-pointer flex justify-between items-center transition-all hover:bg-zinc-900/80 ${isOpen ? 'ring-2 ring-[#1D4ED8]/50 border-[#1D4ED8]' : ''}`}
@@ -155,7 +157,7 @@ const CertifiedConcierge: React.FC = () => {
                       disabled={!selectedState || !termsAccepted}
                       className="group w-full bg-[#1D4ED8] hover:bg-[#2563EB] disabled:opacity-50 disabled:hover:bg-[#1D4ED8] text-white text-sm md:text-base font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-xl shadow-blue-950/20"
                     >
-                      Apply for Certification
+                      Apply for Training
                       <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>

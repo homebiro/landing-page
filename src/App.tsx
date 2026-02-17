@@ -2,14 +2,11 @@ import React from 'react';
 import Navbar from './components/layout/navbar';
 import Hero from './components/sections/hero';
 import ConciergeService from './components/sections/conciergeservice';
-import CitiesNetwork from './components/sections/citiesnetwork';
-import WhyChooseUs from './components/sections/whychooseus';
+import Solutions from './components/sections/solutions';
+import AboutUs from './components/sections/aboutus';
 import Testimonial from './components/sections/testimonial';
 import CertifiedConcierge from './components/sections/certifiedconcierge';
 import SuccessMatrics from './components/sections/successmatrics';
-// import NeighbourhoodTour from './components/sections/neighbourhoodtour';
-// import ConciergExperience from './components/sections/conciergexperience';
-// import Protection from './components/sections/protection';
 import Footer from './components/layout/footer';
 import CookieBanner from './components/layout/cookiebanner';
 import ScrollToTop from './components/scrolltotop';
@@ -31,10 +28,10 @@ const App: React.FC = () => {
           <ConciergeService /> 
 
           {/* Cities Network  */}
-           <CitiesNetwork /> 
+           <Solutions /> 
 
           {/*   why choose us */}
-          <WhyChooseUs />
+          <AboutUs />
 
           {/*   why choose us */}
           <Testimonial />

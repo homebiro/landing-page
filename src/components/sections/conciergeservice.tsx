@@ -42,7 +42,7 @@ const ConciergeService: React.FC = () => {
           <div className="flex flex-col items-center gap-8">
             {/* BOLT-STYLE STRETCHED DESCRIPTION */}
             <p className="text-[17px] md:text-[20px] text-[#4F5662] max-w-4xl leading-[1.6] font-medium tracking-tight">
-              Pricing and features varies base on your hunting state
+              One-time activation fee, Pricing and features vary by state.
             </p>
             
             {/* FORMAL BUTTON STYLE */}

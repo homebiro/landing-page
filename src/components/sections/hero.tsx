@@ -4,9 +4,23 @@ import { Button } from '../ui/button';
 import rollup from '../../assets/rolup.png';
 
 const Hero: React.FC = () => {
-  const scrollToVibeCheck = () => {
-    const element = document.getElementById('vibe-check');
-    element?.scrollIntoView({ behavior: 'smooth' });
+  // FIXED: Function to handle smooth scrolling with navbar offset
+  const scrollToSection = (id: string) => {
+    const sectionId = id.replace('#', '');
+    const element = document.getElementById(sectionId);
+    
+    if (element) {
+      const offset = 100; // Account for the height of the fixed navbar
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   const containerVariants: Variants = {
@@ -41,7 +55,7 @@ const Hero: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {/* PREMIUM HEADLINE - Fixed max-width to control stretch */}
+          {/* PREMIUM HEADLINE */}
           <motion.h1 
             variants={itemVariants} 
             className="text-4xl md:text-[60px] font-extrabold leading-[1.1] tracking-[-0.04em] text-[#2F3337] max-w-4xl"
@@ -49,26 +63,28 @@ const Hero: React.FC = () => {
             All-in-one tenant <span className="text-[#1D4ED8]">concierge service.</span>
           </motion.h1>
 
-          {/* BOLT-STYLE STRETCHED SUB-HEADLINE - Matched max-w-4xl to fit heading */}
+          {/* SUB-HEADLINE */}
           <motion.p 
             variants={itemVariants} 
             className="text-[17px] md:text-[20px] text-[#4F5662] max-w-4xl leading-[1.6] font-medium tracking-tight"
           >
-            Skip the agent and hunting chaos. Homebiro handles your searches, 
-            inspections, and neighbourhood tour, so you can move into a home 
-            you love without the stress.
+            One App for busy professionals, Newcomers in the City, House Hunter tired of
+            the traditional agent extortion and rental chaos.
           </motion.p>
 
           {/* BUTTON GROUP */}
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 pt-4 justify-center items-center w-full max-w-md sm:max-w-none">
             <Button 
-              onClick={scrollToVibeCheck} 
+              // FIXED: Now calls scrollToSection correctly
+              onClick={() => scrollToSection('#pricing')} 
               className="w-full sm:w-auto flex items-center justify-center rounded-lg text-[15px] font-bold px-10 h-[56px] sm:min-w-[220px] !bg-[#1D4ED8] !text-white hover:!bg-[#153ca3] transition-all duration-300 border-none shadow-none"
             >
               Start hunting today
             </Button>
             
             <button 
+              // Optional: Points to the video or vibe check section
+              onClick={() => scrollToSection('#vibe-check')}
               className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg text-[15px] font-bold px-10 h-[56px] sm:min-w-[220px] bg-[#F2F5F7] text-[#2F3337] hover:bg-[#E8EDF0] transition-all duration-300"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">

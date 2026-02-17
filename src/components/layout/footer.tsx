@@ -19,9 +19,11 @@ const Footer: React.FC = () => {
             <div className="space-y-8">
               <div>
                 <h3 className="text-2xl font-black tracking-tighter text-white mb-4">HOMEBIRO</h3>
-                <p className="text-zinc-500 text-sm leading-relaxed max-w-xs">
-                  Refund Policy, Intellectual Property Policy, Our Franchise, About Homebiro.Manage Your
-                  Estate
+                <p className="text-white text-sm leading-relaxed max-w-xs">
+                  Homebiro is the first Managed Marketplace for House
+                  Hunters in Nigeria.”
+                  Our Mission: Build Technological solutions that improve the real estate
+                  industry to make the city better for living.
                 </p>
               </div>
               
@@ -49,19 +51,19 @@ const Footer: React.FC = () => {
 
             {/* Quick Links */}
             <div className="space-y-6">
-              <h4 className="font-bold uppercase text-[10px] tracking-[0.2em] text-zinc-600">Company</h4>
-              <ul className="space-y-4 text-sm font-medium text-zinc-400">
-                <li><a href="#about" className="hover:text-blue-500 transition-colors">About Homebiro</a></li>
-                <li><a href="#vibe-check" className="hover:text-blue-500 transition-colors">How it Works</a></li>
+              <h4 className="font-bold uppercase text-[10px] tracking-[0.2em] text-white">Company</h4>
+              <ul className="space-y-4 text-sm font-medium text-white">
+                <li><a href="#about-us" className="hover:text-blue-500 transition-colors">About Homebiro</a></li>
+                 <li><a href="#vibe-check" className="hover:text-blue-500 transition-colors">Manage your Estate</a></li>
                 <li><a href="#franchise" className="hover:text-blue-500 transition-colors">Our Franchise</a></li>
-                <li><a href="#protection" className="hover:text-blue-500 transition-colors">The Protection Layer</a></li>
+                 <li><a href="#vibe-check" className="hover:text-blue-500 transition-colors">FQA</a></li>
               </ul>
             </div>
 
             {/* Legal */}
             <div className="space-y-6">
-              <h4 className="font-bold uppercase text-[10px] tracking-[0.2em] text-zinc-600">Legal & Policy</h4>
-              <ul className="space-y-4 text-sm font-medium text-zinc-400">
+              <h4 className="font-bold uppercase text-[10px] tracking-[0.2em] text-white">Legal & Policy</h4>
+              <ul className="space-y-4 text-sm font-medium text-white">
                 <li><a href="#" className="hover:text-blue-500 transition-colors">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-blue-500 transition-colors">Terms of Service</a></li>
                 <li><a href="#" className="hover:text-blue-500 transition-colors">Refund Policy</a></li>
@@ -81,8 +83,8 @@ const Footer: React.FC = () => {
                 <h4 className="font-bold text-xl text-white leading-tight">
                   Manage Your Estate.
                 </h4>
-                <p className="text-zinc-500 text-xs leading-relaxed">
-                  Join 500+ managers on the waitlist for exclusive estate oversight tools.
+                <p className="text-white text-xs leading-relaxed">
+                  Join 500+ house hunters on the waitlist for exclusive estate oversight tools.
                 </p>
                 
                 <Button 
@@ -97,11 +99,11 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-zinc-900 pt-10 flex flex-col items-center justify-center gap-6 text-zinc-600 text-[9px] font-bold uppercase tracking-[0.3em] text-center">
+          <div className="border-t border-zinc-900 pt-10 flex flex-col items-center justify-center gap-6 text-white text-[9px] font-bold uppercase tracking-[0.3em] text-center">
             <p className="leading-relaxed">
               © {currentYear} HOMEBIRO SOLUTIONS LTD. ALL RIGHTS RESERVED. 
               <span className="block mt-4 opacity-50">
-                <a href="#" className="cursor-default hover:text-zinc-400 transition-colors">
+                <a href="#" className="cursor-default hover:text-white transition-colors">
                   Powered by Lyridra
                 </a>
               </span>

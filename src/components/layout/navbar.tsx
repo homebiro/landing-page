@@ -9,33 +9,29 @@ const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('');
 
   const navLinks = [
-    { name: 'About Us', href: '#about' },
+    { name: 'About Us', href: '#about-us' },
     { name: 'Solutions', href: '#solutions' },
-    { name: 'Work with Homebiro', href: '#work-with-us' },
-    { name: 'Pricing', href: '#pricing' },
+    { name: 'Work with Homebiro', href: '#certified-concierge' },
+    // Pointing to the specific feature ID we created in Step 1
+    { name: 'Pricing', href: '#pricing' }, 
     { name: 'Our Cities', href: '#cities' },
   ];
 
   useEffect(() => {
     const handleIntersect = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && window.scrollY > 50) {
+        if (entry.isIntersecting) {
           const id = entry.target.id;
           setActiveSection(id);
-          window.history.pushState(null, '', `#${id}`);
-        } 
-        else if (window.scrollY <= 50) {
-          setActiveSection('');
-          if (window.location.hash) {
-            window.history.pushState(null, '', window.location.pathname);
-          }
+          window.history.replaceState(null, '', `#${id}`);
         }
       });
     };
 
     const observerOptions = {
-      rootMargin: '-100px 0px -60% 0px', 
-      threshold: 0.1, 
+      // Adjusted margin so it triggers when the section is near the top
+      rootMargin: '-30% 0px -60% 0px',
+      threshold: 0,
     };
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
@@ -46,11 +42,14 @@ const Navbar: React.FC = () => {
       if (element) observer.observe(element);
     });
 
+    const vibeCheck = document.getElementById('vibe-check');
+    if (vibeCheck) observer.observe(vibeCheck);
+
     const handleScroll = () => {
-      if (window.scrollY < 10) {
+      if (window.scrollY < 50) {
         setActiveSection('');
         if (window.location.hash) {
-          window.history.pushState(null, '', window.location.pathname);
+          window.history.replaceState(null, '', window.location.pathname);
         }
       }
     };
@@ -67,7 +66,7 @@ const Navbar: React.FC = () => {
     const element = document.getElementById(sectionId);
     
     if (element) {
-      const offset = 80;
+      const offset = 100; // Slightly larger offset for better visibility
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -77,28 +76,22 @@ const Navbar: React.FC = () => {
         top: offsetPosition,
         behavior: 'smooth'
       });
-
-      window.history.pushState(null, '', id);
+      
+      setActiveSection(sectionId);
     }
   };
 
   return (
     <>
-      <nav className="fixed top-0 w-full bg-zinc-50/90 backdrop-blur-xl z-[90] border-b border-zinc-200 transition-all duration-300 hover:bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+      <nav className="fixed top-0 w-full bg-zinc-50/90 backdrop-blur-xl z-[90] border-b border-zinc-200 h-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between gap-4">
           
-          {/* Logo Area - Stays Left */}
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center">
-              <img 
-                src={logo} 
-                alt="Homebiro" 
-                className="h-16 w-auto object-contain transition-transform hover:scale-105 active:scale-95" 
-              />
+              <img src={logo} alt="Homebiro" className="h-16 w-auto object-contain" />
             </a>
           </div>
 
-          {/* NAV LINKS & EMAIL - Pushed Right */}
           <div className="hidden lg:flex flex-1 justify-end items-center gap-8 text-sm font-semibold text-zinc-500 mr-4">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace('#', '');
@@ -106,52 +99,38 @@ const Navbar: React.FC = () => {
                 <a 
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.href);
-                  }}
-                  className={`relative py-2 transition-all duration-300 transform hover:-translate-y-1 ${
-                    isActive ? 'text-[#1D4ED8]' : 'hover:text-[#1D4ED8]'
-                  }`}
+                  onClick={(e) => { e.preventDefault(); scrollToSection(link.href); }}
+                  className={`relative py-2 transition-all ${isActive ? 'text-[#1D4ED8]' : 'hover:text-[#1D4ED8]'}`}
                 >
                   {link.name}
-                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#1D4ED8] transition-transform duration-300 origin-left ${
-                    isActive ? 'scale-x-100' : 'scale-x-0'
-                  }`} />
+                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#1D4ED8] transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : 'scale-x-0'}`} />
                 </a>
               );
             })}
-
-            {/* SUPPORT EMAIL TEXT - Updated to Deep Blue (#1D4ED8) */}
-            <span className="text-[#1D4ED8] py-2 cursor-default font-bold whitespace-nowrap">
-              Email: surport@homebiro.com
-            </span>
+            <a 
+              href="mailto:support@homebiro.com" 
+              className="text-[#1D4ED8] font-bold hover:underline cursor-pointer transition-all"
+            >
+              Email: support@homebiro.com
+            </a>
           </div>
 
-          {/* Right Action Buttons - Anchored Right */}
-          <div className="flex items-center gap-4 flex-shrink-0">
+          <div className="flex items-center gap-4">
             <div className="relative group hidden sm:block">
-              <button 
-                onClick={() => setIsModalOpen(true)}
-                className="text-xs font-bold bg-[#1D4ED8]/5 text-[#1D4ED8] hover:bg-[#1D4ED8] hover:text-white transition-all duration-300 px-4 py-2 rounded-full border border-[#1D4ED8]/10 shadow-sm"
-              >
+              <button onClick={() => setIsModalOpen(true)} className="text-xs font-bold bg-[#1D4ED8]/5 text-[#1D4ED8] px-4 py-2 rounded-full border border-[#1D4ED8]/10">
                 Download App
               </button>
-              <span className="absolute -top-2 -right-2 bg-[#E67E22] text-[7px] text-white px-1.5 py-0.5 rounded-full font-black uppercase tracking-widest shadow-lg">Soon</span> 
+              <span className="absolute -top-2 -right-2 bg-[#E67E22] text-[7px] text-white px-1.5 py-0.5 rounded-full font-black uppercase">Soon</span> 
             </div>
             
             <Button 
-              variant="primary" 
-              className="hidden md:block !py-2.5 !px-6 text-sm !bg-[#1D4ED8] !text-white hover:!bg-[#153ca3] hover:scale-105 transition-all shadow-lg shadow-blue-200 active:scale-95"
-              onClick={() => scrollToSection('#vibe-check')}
+              className="hidden md:block !bg-[#1D4ED8] !text-white"
+               onClick={() => scrollToSection('#pricing')} 
             >
               START HUNTING
             </Button>
 
-            <button 
-              className={`lg:hidden p-2 rounded-lg transition-colors ${isMobileMenuOpen ? 'bg-blue-50 text-[#1D4ED8]' : 'text-zinc-600'}`}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
+            <button className="lg:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMobileMenuOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -164,57 +143,18 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-zinc-100 overflow-hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen ? 'max-h-[700px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+        <div className={`lg:hidden absolute top-full left-0 w-full bg-white border-b transition-all duration-500 ${isMobileMenuOpen ? 'max-h-[700px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
           <div className="px-6 py-8 flex flex-col gap-6">
-            {navLinks.map((link, i) => {
-              const isActive = activeSection === link.href.replace('#', '');
-              return (
-                <a 
-                  key={link.name}
-                  href={link.href} 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsMobileMenuOpen(false);
-                    scrollToSection(link.href);
-                  }}
-                  className={`text-lg font-bold transition-transform duration-300 ${
-                    isActive ? 'text-[#1D4ED8] translate-x-2' : 'text-zinc-700 hover:text-[#1D4ED8]'
-                  } ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-4'}`}
-                  style={{ transitionDelay: `${i * 50}ms` }}
-                >
-                  {link.name}
-                </a>
-              );
-            })}
-
-            {/* Mobile Email - Updated to Deep Blue (#1D4ED8) */}
-            <span 
-              className={`text-lg font-bold text-[#1D4ED8] transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-4'}`}
-              style={{ transitionDelay: `${navLinks.length * 50}ms` }}
-            >
-              Email: surport@homebiro.com
-            </span>
-
-            <div className="pt-6 border-t border-zinc-100 flex flex-col gap-4">
-               <button 
-                onClick={() => { setIsModalOpen(true); setIsMobileMenuOpen(false); }}
-                className="flex items-center justify-between w-full p-4 rounded-xl bg-blue-50 text-[#1D4ED8] font-bold"
+            {navLinks.map((link) => (
+              <a 
+                key={link.name} 
+                href={link.href} 
+                onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); scrollToSection(link.href); }}
+                className={`text-lg font-bold ${activeSection === link.href.replace('#', '') ? 'text-[#1D4ED8]' : 'text-zinc-700'}`}
               >
-                Download App
-                <span className="text-[9px] bg-[#E67E22] text-white px-2 py-0.5 rounded-full uppercase">Coming Soon</span>
-              </button>
-              
-              <Button 
-                variant="primary" 
-                className="w-full py-4 !bg-[#1D4ED8] !text-white shadow-lg shadow-blue-100 active:scale-95"
-                onClick={() => {
-                  scrollToSection('#vibe-check');
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                START HUNTING
-              </Button>
-            </div>
+                {link.name}
+              </a>
+            ))}
           </div>
         </div>
       </nav>

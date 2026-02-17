@@ -10,10 +10,10 @@ const containerVariants: Variants = {
   }
 };
 
-const CityNetwork: React.FC = () => {
+const Solutions: React.FC = () => {
   return (
     /* Tight vertical padding for a sleek transition */
-    <section id="city-network" className="py-12 md:py-20 px-6 bg-[#09090B] overflow-hidden relative">
+    <section id="solutions" className="py-12 md:py-20 px-6 bg-[#09090B] overflow-hidden relative">
       
       {/* Subtle background glow accent */}
       <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-[#1D4ED8]/5 blur-[120px] pointer-events-none" />
@@ -42,7 +42,7 @@ const CityNetwork: React.FC = () => {
 
             {/* Description 2 - Now matches Description 1 styling */}
             <p className="text-[20px] md:text-[24px] text-zinc-400 font-medium leading-[1.5] max-w-3xl tracking-tight">
-              Our expansive city-wide network is the backbone of our guaranteed delivery for 
+              Our expensive city-wide network is the backbone of our guaranteed delivery for 
               clients. We’ve become the "agent’s agent." Local partners and industry experts 
               rely on our hyper-local neighbourhood knowledge and exclusive hidden inventory 
               to deliver what no one else can.
@@ -54,4 +54,4 @@ const CityNetwork: React.FC = () => {
   );
 };
 
-export default CityNetwork;
+export default Solutions;
