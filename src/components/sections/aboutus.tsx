@@ -26,20 +26,20 @@ const WhyChooseUs: React.FC = () => {
     { 
       name: "The Scout (Tier 1)", 
       price: "Free", 
-      features: ["Unlimited Apartment Viewing", "Charge Inspection Fee", "Post Shared Apartment Request"], 
+      features: ["Unlimited Apartment Viewing", "Charge Inspection Fee", "Post Shared Apartment Request", "No concierge Support"], 
       color: "bg-zinc-100 text-zinc-900 border-zinc-200" 
     },
     { 
       name: "The Solo Hunter (Tier 2)", 
       price: "N12,500", 
-      features: ["Zero Inspection Fee", "Max. 3 physical inspections", "Move-in Checklist", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], 
+      features: ["Zero Inspection Fee", "Max. 3 physical inspections", "Move-in Checklist (refundable caution guaranteed)", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], 
       color: "bg-blue-50 text-blue-900 border-blue-100", 
       highlight: true 
     },
     { 
       name: "The Family Suite (Tier 3)", 
       price: "N20,000", 
-      features: ["Zero Inspection Fee", "Max. 4 physical inspections", "Move-in Checklist", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], 
+      features: ["Zero Inspection Fee", "Max. 4 physical inspections", "Move-in Checklist (refundable caution guaranteed)", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], 
       color: "bg-zinc-900 text-white border-zinc-800" 
     },
     { 
