@@ -32,14 +32,14 @@ const WhyChooseUs: React.FC = () => {
     { 
       name: "The Solo Hunter (Tier 2)", 
       price: "N12,500", 
-      features: ["Zero Inspection Fee", "Max. 3 physical inspections", "Move-in Checklist (refundable caution guaranteed)", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], 
+      features: ["Zero Inspection Fee", "Max. 3 physical inspections", "Move-in Checklist (Refundable Caution Fee Guaranteed)", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], 
       color: "bg-blue-50 text-blue-900 border-blue-100", 
       highlight: true 
     },
     { 
       name: "The Family Suite (Tier 3)", 
       price: "N20,000", 
-      features: ["Zero Inspection Fee", "Max. 4 physical inspections", "Move-in Checklist (refundable caution guaranteed)", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], 
+      features: ["Zero Inspection Fee", "Max. 4 physical inspections", "Move-in Checklist (Refundable Caution Fee Guaranteed)", "Boost Shared Apartment Request", "Automatic Total Package Disclosure", "Apartment Status Overview", "Detailed Disclosure.", "Newsletter (Legal Guide)", "24/7 Personalized WhatsApp Concierge Support"], 
       color: "bg-zinc-900 text-white border-zinc-800" 
     },
     { 
