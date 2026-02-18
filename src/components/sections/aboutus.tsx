@@ -100,7 +100,7 @@ const WhyChooseUs: React.FC = () => {
   ];
 
   const getSectionId = (title: string) => {
-    if (title === "Our Fee Structure") return "pricing";
+    if (title === "Concierge service") return "pricing";
     if (title === "Neighbourhood Tour") return "cities";
     return undefined;
   };

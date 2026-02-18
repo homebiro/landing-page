@@ -14,7 +14,7 @@ const textVariants: Variants = {
 const ConciergeService: React.FC = () => {
   return (
     <section 
-      id="solutions" 
+      id="pricing" 
       /* Reduced pt-12 to pt-4 and md:pt-20 to md:pt-8 to move it up */
       className="relative pt-4 md:pt-8 pb-24 md:pb-32 px-6 bg-zinc-50/50 overflow-hidden"
     >
