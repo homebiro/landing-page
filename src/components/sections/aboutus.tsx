@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
-import { X, Check, ArrowRight } from 'lucide-react';
+import { X, Check, ArrowRight, Loader2 } from 'lucide-react';
+import { supabase } from '../../lib/supabase'; // Ensure this path is correct
 import fee from '../../assets/fee.png';
 import tour from '../../assets/tour.png';
 import roommate from '../../assets/roommate.png';
@@ -20,7 +21,13 @@ const WhyChooseUs: React.FC = () => {
   const [isPricingOpen, setIsPricingOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  // Form States
   const [selectedPlan, setSelectedPlan] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState("");
 
   const pricingPlans = [
     { 
@@ -53,7 +60,7 @@ const WhyChooseUs: React.FC = () => {
   const features = [
     {
       title: "Our Fee Structure",
-      description: " Our fee structure, which includes the total package chaos box are structured to serve as a financial shield, ensuring you only need to pay for actual value and not for agent extortion. ",
+      description: "Our fee structure, which includes the total package chaos box are structured to serve as a financial shield, ensuring you only need to pay for actual value and not for agent extortion.",
       image: fee,
       linkText: "View pricing",
       isFeeStructure: true,
@@ -61,13 +68,13 @@ const WhyChooseUs: React.FC = () => {
     },
     {
       title: "Neighbourhood Tour",
-      description: "We help you experience the neighbourhood vibe before even committing to hunt in that area",                                    
+      description: "We help you experience the neighbourhood vibe before even committing to hunt in that area", 
       image: tour,
       linkText: "Explore cities",
     },
     {
       title: "Post Shared Apartment Request",
-      description: " Create your algorithm and connect freely with people who might want to live with you",
+      description: "Create your algorithm and connect freely with people who might want to live with you",
       image: roommate,
       linkText: "Find matches",
     },
@@ -99,16 +106,39 @@ const WhyChooseUs: React.FC = () => {
     }
   ];
 
-  const getSectionId = (title: string) => {
-    if (title === "Concierge service") return "pricing";
-    if (title === "Neighbourhood Tour") return "cities";
-    return undefined;
-  };
-
   const handleGetStarted = (planName: string) => {
     setSelectedPlan(planName);
     setIsFormOpen(true);
     setIsSubmitted(false);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const { error } = await supabase
+      .from('pricing_leads')
+      .insert([
+        { 
+          full_name: fullName, 
+          phone_number: phone, 
+          preferred_location: location,
+          selected_plan: selectedPlan 
+        }
+      ]);
+
+    setIsLoading(false);
+
+    if (!error) {
+      setIsSubmitted(true);
+      // Reset fields
+      setFullName("");
+      setPhone("");
+      setLocation("");
+    } else {
+      console.error("Supabase Error:", error);
+      alert("Error submitting request. Please try again.");
+    }
   };
 
   return (
@@ -127,7 +157,6 @@ const WhyChooseUs: React.FC = () => {
           {features.map((feature, index) => (
             <motion.div 
               key={index} 
-              id={getSectionId(feature.title)}
               initial="hidden" 
               whileInView="visible" 
               viewport={{ once: true, margin: "-100px" }} 
@@ -199,21 +228,46 @@ const WhyChooseUs: React.FC = () => {
                 <>
                   <h3 className="text-2xl font-bold mb-2">Almost there!</h3>
                   <p className="text-zinc-500 text-sm mb-6 font-medium">You've selected: <span className="text-blue-600 font-bold">{selectedPlan}</span></p>
-                  <form onSubmit={(e) => { e.preventDefault(); setIsSubmitted(true); setIsPricingOpen(false); }} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2 ml-1">Full Name</label>
-                      <input required type="text" className="w-full p-4 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="John Doe" />
+                      <input 
+                        required 
+                        type="text" 
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        className="w-full p-4 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
+                        placeholder="John Doe" 
+                      />
                     </div>
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2 ml-1">Phone Number</label>
-                      <input required type="tel" className="w-full p-4 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="+234 ..." />
+                      <input 
+                        required 
+                        type="tel" 
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="w-full p-4 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
+                        placeholder="+234 ..." 
+                      />
                     </div>
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2 ml-1">Preferred Location</label>
-                      <input required type="text" className="w-full p-4 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="e.g. ibadan, Lagos" />
+                      <input 
+                        required 
+                        type="text" 
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        className="w-full p-4 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
+                        placeholder="e.g. Ibadan, Lagos" 
+                      />
                     </div>
-                    <button type="submit" className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 mt-4">
-                      Start Hunting
+                    <button 
+                      type="submit" 
+                      disabled={isLoading}
+                      className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 mt-4 flex items-center justify-center"
+                    >
+                      {isLoading ? <Loader2 className="animate-spin" size={20} /> : 'Start Hunting'}
                     </button>
                   </form>
                 </>
@@ -223,8 +277,16 @@ const WhyChooseUs: React.FC = () => {
                         <Check size={40} strokeWidth={3} />
                     </div>
                     <h3 className="text-2xl font-bold text-zinc-900">House Hunting Request Sent!</h3>
-                    <p className="text-zinc-600 text-lg font-medium">Homebiro will reach out to you shortly .</p>
-                    <button onClick={() => setIsFormOpen(false)} className="mt-8 px-8 py-3 bg-zinc-900 text-white rounded-xl font-bold hover:bg-zinc-800 transition-all">Close</button>
+                    <p className="text-zinc-600 text-lg font-medium">Homebiro surport team will reach out to you shortly.</p>
+                    <button 
+                      onClick={() => {
+                        setIsFormOpen(false);
+                        setIsPricingOpen(false);
+                      }} 
+                      className="mt-8 px-8 py-3 bg-zinc-900 text-white rounded-xl font-bold hover:bg-zinc-800 transition-all"
+                    >
+                      Close
+                    </button>
                 </div>
               )}
             </motion.div>

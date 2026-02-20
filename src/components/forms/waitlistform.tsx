@@ -9,6 +9,7 @@ interface WaitlistFormProps {
 const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSuccess }) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [xAccount, setXAccount] = useState(''); // New state for X account
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -23,12 +24,12 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSuccess }) => {
         { 
           email_address: email, 
           phone_number: phone,
+          x_handle: xAccount || null, // Insert null if empty so it stays optional
           status: 'pending' 
         }
       ]);
 
     if (error) {
-      // Check for Postgres unique violation code '23505'
       if (error.code === '23505') {
         setErrorMessage("You're already on the waitlist! ✨");
       } else {
@@ -72,9 +73,21 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSuccess }) => {
                 if (errorMessage) setErrorMessage(null);
               }}
             />
+            {/* Optional X Account Field */}
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="X (Twitter) handle @username"
+                className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-[#1D4ED8] outline-none transition-all shadow-sm"
+                value={xAccount}
+                onChange={(e) => setXAccount(e.target.value)}
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-bold text-zinc-400 uppercase tracking-widest bg-white px-1">
+                Optional
+              </span>
+            </div>
           </div>
 
-          {/* Inline Prompt for Existing Users */}
           {errorMessage && (
             <div className="px-1 animate-in slide-in-from-top-2 duration-300">
               <p className="text-sm font-bold text-[#E67E22] flex items-center gap-2">
