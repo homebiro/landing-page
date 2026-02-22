@@ -62,7 +62,7 @@ const WhyChooseUs: React.FC = () => {
       title: "Our Fee Structure",
       description: "Our fee structure, which includes the total package chaos box are structured to serve as a financial shield, ensuring you only need to pay for actual value and not for agent extortion.",
       image: fee,
-      linkText: "View pricing",
+      linkText: "Learn More",
       isFeeStructure: true,
       onClick: () => setIsPricingOpen(true)
     },
