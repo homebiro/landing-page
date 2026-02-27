@@ -12,7 +12,6 @@ const Navbar: React.FC = () => {
     { name: 'About Us', href: '#about-us' },
     { name: 'Solutions', href: '#solutions' },
     { name: 'Work with Homebiro', href: '#certified-concierge' },
-    // Pointing to the specific feature ID we created in Step 1
     { name: 'Pricing', href: '#pricing' }, 
     { name: 'Our Cities', href: '#cities' },
   ];
@@ -29,7 +28,6 @@ const Navbar: React.FC = () => {
     };
 
     const observerOptions = {
-      // Adjusted margin so it triggers when the section is near the top
       rootMargin: '-30% 0px -60% 0px',
       threshold: 0,
     };
@@ -66,7 +64,7 @@ const Navbar: React.FC = () => {
     const element = document.getElementById(sectionId);
     
     if (element) {
-      const offset = 100; // Slightly larger offset for better visibility
+      const offset = 100;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -92,6 +90,7 @@ const Navbar: React.FC = () => {
             </a>
           </div>
 
+          {/* Desktop Links */}
           <div className="hidden lg:flex flex-1 justify-end items-center gap-8 text-sm font-semibold text-zinc-500 mr-4">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace('#', '');
@@ -115,6 +114,7 @@ const Navbar: React.FC = () => {
             </a>
           </div>
 
+          {/* Right Side Buttons (Desktop) */}
           <div className="flex items-center gap-4">
             <div className="relative group hidden sm:block">
               <button onClick={() => setIsModalOpen(true)} className="text-xs font-bold bg-[#1D4ED8]/5 text-[#1D4ED8] px-4 py-2 rounded-full border border-[#1D4ED8]/10">
@@ -130,6 +130,7 @@ const Navbar: React.FC = () => {
               START HUNTING
             </Button>
 
+            {/* Mobile Toggle */}
             <button className="lg:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMobileMenuOpen ? (
@@ -142,8 +143,8 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <div className={`lg:hidden absolute top-full left-0 w-full bg-white border-b transition-all duration-500 ${isMobileMenuOpen ? 'max-h-[700px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+        {/* Mobile Menu Overlay */}
+        <div className={`lg:hidden absolute top-full left-0 w-full bg-white border-b transition-all duration-500 overflow-hidden ${isMobileMenuOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
           <div className="px-6 py-8 flex flex-col gap-6">
             {navLinks.map((link) => (
               <a 
@@ -156,15 +157,35 @@ const Navbar: React.FC = () => {
               </a>
             ))}
 
+            {/* Mobile Actions Integrated Here */}
+            <div className="flex flex-col gap-4 pt-6 border-t border-zinc-100">
+              <div className="relative w-fit">
+                <button 
+                  onClick={() => { setIsModalOpen(true); setIsMobileMenuOpen(false); }} 
+                  className="text-sm font-bold bg-[#1D4ED8]/5 text-[#1D4ED8] px-6 py-3 rounded-full border border-[#1D4ED8]/10 w-full text-left"
+                >
+                  Download App
+                </button>
+                <span className="absolute -top-2 -right-2 bg-[#E67E22] text-[8px] text-white px-2 py-0.5 rounded-full font-black uppercase">Soon</span> 
+              </div>
+
+              <Button 
+                className="!bg-[#1D4ED8] !text-white w-full py-6 text-lg"
+                onClick={() => { scrollToSection('#pricing'); setIsMobileMenuOpen(false); }} 
+              >
+                START HUNTING
+              </Button>
+            </div>
+
             {/* Mobile Support Email Link */}
-            <div className="pt-6 mt-2 border-t border-zinc-100">
+            <div className="pt-2">
               <a 
                 href="mailto:support@homebiro.com" 
                 className="text-[#1D4ED8] font-bold text-lg hover:underline transition-all"
               >
                 Email: support@homebiro.com
               </a>
-</div>
+            </div>
           </div>
         </div>
       </nav>
@@ -175,4 +196,3 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-
