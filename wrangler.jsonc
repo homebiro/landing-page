@@ -1,6 +1,9 @@
 {
   "name": "home-biro",
   "compatibility_date": "2024-03-01",
+  "build": {
+    "command": "bun run build"
+  },
   "assets": {
     "directory": "./dist"
   }
