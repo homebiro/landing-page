@@ -13,7 +13,7 @@ const CookieBanner: React.FC = () => {
           <a href="#" className="text-white underline ml-1">Learn more</a>
         </p>
         <button 
-          onClick={acceptCookies} // ✅ Use context function
+          onClick={acceptCookies} 
           className="w-full bg-white text-black py-3 rounded-xl font-bold text-sm hover:bg-zinc-200 transition-colors"
         >
           I UNDERSTAND
